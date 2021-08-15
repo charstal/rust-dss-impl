@@ -7,8 +7,10 @@ pub mod raftpb {
 
             // Your code here if more rpc desired.
             // rpc xxx(yyy) returns (zzz)
+            rpc append_entries(AppendEntriesArgs) returns (AppendEntriesReply);
         }
     }
+
     pub use self::raft::{
         add_service as add_raft_service, Client as RaftClient, Service as RaftService,
     };
