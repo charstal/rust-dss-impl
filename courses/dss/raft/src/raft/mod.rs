@@ -51,11 +51,11 @@ pub enum Role {
     Leader,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct LogEntry {
     term: u64,
     index: u64,
-    // command:
+    command: Vec<u8>,
 }
 
 impl LogEntry {
@@ -63,6 +63,15 @@ impl LogEntry {
         LogEntry {
             term: entry.term,
             index: entry.index,
+            command: entry.command,
+        }
+    }
+
+    pub fn from_parameter(term: u64, index: u64, command: Vec<u8>) -> Self {
+        LogEntry {
+            term,
+            index,
+            command,
         }
     }
 
@@ -71,6 +80,9 @@ impl LogEntry {
     }
     pub fn get_index(&self) -> u64 {
         self.index
+    }
+    pub fn get_command(&self) -> Vec<u8> {
+        self.command.clone()
     }
 }
 
@@ -125,10 +137,11 @@ pub struct Raft {
     next_index: Vec<u64>,
     // index of highest log entry known to be replicated on server
     match_index: Vec<u64>,
-
+    // log
     logs: Vec<LogEntry>,
+    // send newly committed messages
     apply_ch: UnboundedSender<ApplyMsg>,
-
+    // time log
     last_receive_time: time::Instant,
 }
 
@@ -164,7 +177,13 @@ impl Raft {
 
             next_index: vec![0; num_of_peers],
             match_index: vec![0; num_of_peers],
-            logs: vec![],
+
+            // fill one replacement, start from one
+            logs: vec![LogEntry {
+                term: 0,
+                index: 0,
+                command: vec![],
+            }],
             apply_ch,
             last_receive_time: time::Instant::now(),
         };
@@ -260,7 +279,7 @@ impl Raft {
         // If RPC request or response contains term T > currentTerm:
         // set currentTerm = T, convert to follower
         if current_term < args.term {
-            self.covert_to_follower(args.term)
+            self.convert_to_follower(args.term)
         }
 
         let vote_granted = if args.term < current_term {
@@ -308,14 +327,14 @@ impl Raft {
         let mut success = true;
         let current_term = self.current_term;
         if current_term < args.term {
-            self.covert_to_follower(args.term);
+            self.convert_to_follower(args.term);
         }
         if current_term > args.term {
             success = false;
         }
 
         if self.role == Role::Candidate {
-            self.covert_to_follower(args.term);
+            self.convert_to_follower(args.term);
         }
         if args.prev_log_index > 0 {
             if let Some(log) = self.get_log_entry(args.prev_log_index as usize) {
@@ -349,19 +368,22 @@ impl Raft {
         })
     }
 
-    fn start<M>(&self, command: &M) -> Result<(u64, u64)>
+    fn start<M>(&mut self, command: &M) -> Result<(u64, u64)>
     where
         M: labcodec::Message,
     {
-        let index = 0;
-        let term = 0;
-        let is_leader = true;
-        let mut buf = vec![];
-        labcodec::encode(command, &mut buf).map_err(Error::Encode)?;
-        // Your code here (2B).
+        if self.role == Role::Leader {
+            let index = self.last_log_index() + 1;
+            let term = self.current_term;
+            let mut buf = vec![];
+            labcodec::encode(command, &mut buf).map_err(Error::Encode)?;
+            // Your code here (2B).
+            let log_entry = LogEntry::from_parameter(term, index as u64, buf);
+            info!("recevice from client {:?}", log_entry);
+            self.logs.push(log_entry);
+            self.next_index[self.me] = index as u64;
 
-        if is_leader {
-            Ok((index, term))
+            Ok((index as u64, term))
         } else {
             Err(Error::NotLeader)
         }
@@ -371,14 +393,14 @@ impl Raft {
         self.last_receive_time = time::Instant::now();
     }
 
-    fn covert_to_follower(&mut self, term: u64) {
+    fn convert_to_follower(&mut self, term: u64) {
         // set currentTerm = term, convert to follower
         self.role = Role::Follower;
         self.voted_for = None;
         self.current_term = term;
     }
 
-    fn covert_to_candidate(&mut self) {
+    fn convert_to_candidate(&mut self) {
         // set currentTerm = term, convert to follower
         self.role = Role::Candidate;
         self.current_term += 1;
@@ -400,11 +422,48 @@ impl Raft {
     }
 
     fn last_log_index(&self) -> u64 {
-        self.logs.last().map_or(0, |log| log.get_index())
+        self.logs.last().map_or(1, |log| log.get_index())
     }
 
     fn last_log_term(&self) -> u64 {
         self.logs.last().map_or(0, |log| log.get_term())
+    }
+
+    fn generate_append_entries_rpc_request(&self, peer: usize) -> AppendEntriesArgs {
+        let mut args = AppendEntriesArgs {
+            leader_id: self.me as u64,
+            term: self.current_term,
+            prev_log_index: 0,
+            prev_log_term: 0,
+            entries: vec![],
+            leader_commit: self.commit_index,
+        };
+
+        let pre_next_index = self.next_index[peer];
+        if let Some(prev_log) = self.get_log_entry((pre_next_index - 1) as usize) {
+            args.prev_log_index = prev_log.index;
+            args.prev_log_term = prev_log.term;
+        }
+
+        for idx in pre_next_index..=self.last_log_index() {
+            let log = self.get_log_entry(idx as usize).unwrap();
+            args.entries.push(append_entries_args::Entry {
+                term: log.get_term(),
+                index: log.get_index(),
+                command: log.get_command(),
+            });
+        }
+
+        args
+    }
+
+    fn generate_request_vote_rpc_request(&self) -> RequestVoteArgs {
+        RequestVoteArgs {
+            term: self.current_term,
+            candidate_id: self.me as u64,
+            last_log_index: self.last_log_index(),
+            last_log_term: self.last_log_term(),
+        }
     }
 
     fn truncate_log(&mut self, index: usize) {
@@ -437,7 +496,7 @@ impl Raft {
 }
 
 async fn leader_election(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
-    info!("Start leader election");
+    // info!("Start leader election");
     let mut timeout = ElectionTimeOut::new();
     while !*stop_signal.borrow() {
         // let election_timeout = rand::thread_rng().gen_range(300, 500);
@@ -466,14 +525,15 @@ async fn start_election(raft: Arc<Mutex<Raft>>) {
         let raft = Clone::clone(&raft);
         let mut rt = raft.lock().unwrap();
         num_of_peers = rt.peers.len();
-        rt.covert_to_candidate();
+        rt.convert_to_candidate();
 
-        let args = RequestVoteArgs {
-            term: rt.current_term,
-            candidate_id: rt.me as u64,
-            last_log_index: rt.last_log_index(),
-            last_log_term: rt.last_log_term(),
-        };
+        let args = rt.generate_request_vote_rpc_request();
+        // let args = RequestVoteArgs {
+        //     term: rt.current_term,
+        //     candidate_id: rt.me as u64,
+        //     last_log_index: rt.last_log_index(),
+        //     last_log_term: rt.last_log_term(),
+        // };
 
         for index in 0..num_of_peers {
             if index != rt.me {
@@ -503,7 +563,7 @@ async fn start_election(raft: Arc<Mutex<Raft>>) {
                 } else {
                     let mut raft = raft.lock().unwrap();
                     if reply.term > raft.current_term {
-                        raft.covert_to_follower(reply.term);
+                        raft.convert_to_follower(reply.term);
                     }
                 }
             }
@@ -533,8 +593,6 @@ async fn heartbeat(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
             let rt = raft.lock().unwrap();
             if rt.role == Role::Leader {
                 tokio::spawn(start_heartbeat(Clone::clone(&raft)));
-            } else {
-                break;
             }
         }
         time::sleep(time::Duration::from_millis(100)).await;
@@ -548,21 +606,15 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
             let rt = raft.lock().unwrap();
             let num_of_peers = rt.peers.len();
 
-            for index in 0..num_of_peers {
-                let args = AppendEntriesArgs {
-                    leader_id: rt.me as u64,
-                    term: rt.current_term,
-                    prev_log_index: 0,
-                    prev_log_term: 0,
-                    entries: vec![],
-                    leader_commit: rt.commit_index,
-                };
-                if index != rt.me {
+            for peer in 0..num_of_peers {
+                // index of log entry immediately preceding new ones
+                let args = rt.generate_append_entries_rpc_request(peer);
+                if peer != rt.me {
                     info!(
                         "[heartbeat].[tx]: leader: {}\t follower: {}\t args: {:?}\n",
-                        rt.me, index, args
+                        rt.me, peer, args
                     );
-                    let rx = rt.send_append_entries(index, args.clone());
+                    let rx = rt.send_append_entries(peer, args.clone());
                     rxs.push(rx);
                 }
             }
@@ -578,7 +630,7 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
                         rt.me, reply
                     );
                     if rt.current_term < reply.term {
-                        rt.covert_to_follower(reply.term);
+                        rt.convert_to_follower(reply.term);
                         return;
                     }
                 }
@@ -646,10 +698,7 @@ impl Node {
     where
         M: labcodec::Message,
     {
-        // Your code here.
-        // Example:
-        // self.raft.start(command)
-        crate::your_code_here(command)
+        self.raft.lock().unwrap().start(command)
     }
 
     /// The current term of this peer.
