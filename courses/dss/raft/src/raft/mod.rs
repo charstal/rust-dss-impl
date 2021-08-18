@@ -1,4 +1,5 @@
 use futures::channel::mpsc::UnboundedSender;
+use futures::SinkExt;
 use rand::{self, Rng};
 use std::cmp::min;
 use std::sync::atomic::{AtomicUsize, Ordering};
@@ -269,6 +270,19 @@ impl Raft {
         rx
     }
 
+    fn is_last_log_up_to_date(&self, args_log_term: u64, args_log_index: u64) -> bool {
+        let (last_log_term, last_log_index) =
+            self.logs.last().map_or((0, 0), |log| (log.term, log.index));
+
+        // info!("[args]: last_log_term: {}, last_log_index:{}\n\t[log]:last_log_term: {}, last_log_index:{}", args_log_term, args_log_index, last_log_term, last_log_index);
+        // info!("server:{} logs:{:?}", self.me, self.logs);
+        if args_log_term == last_log_term {
+            args_log_index >= last_log_index
+        } else {
+            args_log_term > last_log_term
+        }
+    }
+
     fn request_vote(&mut self, args: &RequestVoteArgs) -> labrpc::Result<RequestVoteReply> {
         // 1. Reply false if term < currentTerm
         // 2. If votedFor is null or candidateId, and candidate’s log is at least as up-to-date
@@ -282,27 +296,28 @@ impl Raft {
             self.convert_to_follower(args.term)
         }
 
-        let vote_granted = if args.term < current_term {
-            false
-        } else {
-            self.voted_for.map_or(true, |candidate_id| {
-                if candidate_id != args.candidate_id as usize {
-                    return false;
-                }
-                let last = self.logs.last().map_or((0, 0), |log| (log.term, log.index));
-                (args.last_log_term, args.last_log_index) >= last
-            })
+        let mut reply = RequestVoteReply {
+            term: current_term,
+            vote_granted: false,
         };
 
-        if vote_granted {
+        if args.term < current_term {
+            return Ok(reply);
+        }
+
+        if let Some(candidate_id) = self.voted_for {
+            if candidate_id != args.candidate_id as usize {
+                return Ok(reply);
+            }
+        }
+
+        if self.is_last_log_up_to_date(args.last_log_term, args.last_log_index) {
+            reply.vote_granted = true;
             self.voted_for = Some(args.candidate_id as usize);
             self.update_receiver_time();
         }
 
-        Ok(RequestVoteReply {
-            term: current_term,
-            vote_granted,
-        })
+        Ok(reply)
     }
 
     fn send_append_entries(
@@ -324,13 +339,17 @@ impl Raft {
     fn append_entries(&mut self, args: &AppendEntriesArgs) -> labrpc::Result<AppendEntriesReply> {
         self.update_receiver_time();
 
-        let mut success = true;
-        let current_term = self.current_term;
-        if current_term < args.term {
-            self.convert_to_follower(args.term);
+        let mut reply = AppendEntriesReply {
+            term: self.current_term,
+            success: false,
+        };
+
+        if self.current_term > args.term {
+            return Ok(reply);
         }
-        if current_term > args.term {
-            success = false;
+
+        if self.current_term < args.term {
+            self.convert_to_follower(args.term);
         }
 
         if self.role == Role::Candidate {
@@ -339,11 +358,11 @@ impl Raft {
         if args.prev_log_index > 0 {
             if let Some(log) = self.get_log_entry(args.prev_log_index as usize) {
                 if log.get_term() != args.prev_log_term {
-                    success = false;
                     self.truncate_log(log.get_index() as usize);
+                    return Ok(reply);
                 }
             } else {
-                success = false;
+                return Ok(reply);
             }
         }
 
@@ -362,10 +381,9 @@ impl Raft {
             self.commit_index = min(args.leader_commit, self.last_log_index());
         }
 
-        Ok(AppendEntriesReply {
-            term: current_term,
-            success,
-        })
+        reply.success = true;
+
+        Ok(reply)
     }
 
     fn start<M>(&mut self, command: &M) -> Result<(u64, u64)>
@@ -379,9 +397,10 @@ impl Raft {
             labcodec::encode(command, &mut buf).map_err(Error::Encode)?;
             // Your code here (2B).
             let log_entry = LogEntry::from_parameter(term, index as u64, buf);
-            info!("recevice from client {:?}", log_entry);
+            info!("leader: {}, recevice from client {:?}", self.me, log_entry);
             self.logs.push(log_entry);
-            self.next_index[self.me] = index as u64;
+            self.next_index[self.me] = index as u64 + 1;
+            self.match_index[self.me] = index as u64;
 
             Ok((index as u64, term))
         } else {
@@ -439,13 +458,13 @@ impl Raft {
             leader_commit: self.commit_index,
         };
 
-        let pre_next_index = self.next_index[peer];
-        if let Some(prev_log) = self.get_log_entry((pre_next_index - 1) as usize) {
+        let next_index = self.next_index[peer];
+        if let Some(prev_log) = self.get_log_entry((next_index - 1) as usize) {
             args.prev_log_index = prev_log.index;
             args.prev_log_term = prev_log.term;
         }
 
-        for idx in pre_next_index..=self.last_log_index() {
+        for idx in next_index..=self.last_log_index() {
             let log = self.get_log_entry(idx as usize).unwrap();
             args.entries.push(append_entries_args::Entry {
                 term: log.get_term(),
@@ -468,6 +487,25 @@ impl Raft {
 
     fn truncate_log(&mut self, index: usize) {
         self.logs.drain(index..);
+    }
+
+    fn update_commit_index(&mut self, commit_idx: u64) {
+        if commit_idx <= self.commit_index || self.role != Role::Leader {
+            return;
+        }
+        let peer_num = self.peers.len();
+        let cnt = self
+            .match_index
+            .iter()
+            .fold(0, |acc, x| acc + if *x >= commit_idx { 1 } else { 0 });
+
+        if cnt <= peer_num / 2 {
+            return;
+        }
+        if self.current_term != self.last_log_term() {
+            return;
+        }
+        self.commit_index = commit_idx;
     }
 }
 
@@ -499,9 +537,6 @@ async fn leader_election(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bo
     // info!("Start leader election");
     let mut timeout = ElectionTimeOut::new();
     while !*stop_signal.borrow() {
-        // let election_timeout = rand::thread_rng().gen_range(300, 500);
-        // let election_timeout = time::Duration::from_millis(election_timeout);
-
         let rf = Clone::clone(&raft);
 
         {
@@ -528,17 +563,11 @@ async fn start_election(raft: Arc<Mutex<Raft>>) {
         rt.convert_to_candidate();
 
         let args = rt.generate_request_vote_rpc_request();
-        // let args = RequestVoteArgs {
-        //     term: rt.current_term,
-        //     candidate_id: rt.me as u64,
-        //     last_log_index: rt.last_log_index(),
-        //     last_log_term: rt.last_log_term(),
-        // };
 
         for index in 0..num_of_peers {
             if index != rt.me {
                 info!(
-                    "[election]: candidate: {}\t follower: {}\t args: {:?}\n",
+                    "[election]: candidate: {}\t follower: {}\t args: {:?}",
                     rt.me, index, args
                 );
                 let rx = rt.send_request_vote(index, args.clone());
@@ -591,6 +620,7 @@ async fn heartbeat(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
     while !*stop_signal.borrow() {
         {
             let rt = raft.lock().unwrap();
+            // info!("{}: {:?}", rt.me, rt.logs);
             if rt.role == Role::Leader {
                 tokio::spawn(start_heartbeat(Clone::clone(&raft)));
             }
@@ -615,26 +645,68 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
                         rt.me, peer, args
                     );
                     let rx = rt.send_append_entries(peer, args.clone());
-                    rxs.push(rx);
+                    rxs.push((peer, args, rx));
                 }
             }
         }
 
-        for rx in rxs {
+        for (peer, args, rx) in rxs {
             let raft = Clone::clone(&raft);
             tokio::spawn(async move {
                 if let Ok(Ok(reply)) = rx.await {
                     let mut rt = raft.lock().unwrap();
                     info!(
-                        "[heartbeat].[rx]: leader: {}, heartbeat reply: {:?}",
-                        rt.me, reply
+                        "[heartbeat].[rx] from:{}, leader: {}, heartbeat reply: {:?}",
+                        peer, rt.me, reply
                     );
+                    if !reply.success {
+                        rt.next_index[peer] -= 1;
+                    } else {
+                        let last = args.prev_log_index + args.entries.len() as u64;
+                        rt.next_index[peer] = last + 1;
+                        rt.match_index[peer] = last;
+                        // info!(
+                        //     "[raft].[index], next_index:{:?}, match_index:{:?}, commit_indx: {}",
+                        //     rt.next_index, rt.match_index, rt.commit_index
+                        // );
+                        rt.update_commit_index(last);
+                    }
                     if rt.current_term < reply.term {
                         rt.convert_to_follower(reply.term);
                         return;
                     }
                 }
             });
+        }
+    }
+}
+
+async fn apply_log(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
+    let mut apply_ch = {
+        let rf = raft.lock().unwrap();
+        Clone::clone(&rf.apply_ch)
+    };
+    while !*stop_signal.borrow() {
+        let mut logs = vec![];
+        {
+            let mut rt = raft.lock().unwrap();
+            if rt.last_applied < rt.commit_index {
+                for idx in rt.last_applied + 1..=rt.commit_index {
+                    let log = rt.get_log_entry(idx as usize).unwrap();
+                    logs.push(log);
+                }
+            }
+            rt.last_applied = rt.commit_index;
+        }
+
+        for log in logs {
+            let am = ApplyMsg {
+                command: log.get_command(),
+                command_index: log.get_index(),
+                command_valid: true,
+            };
+
+            let _ = apply_ch.send(am).await;
         }
     }
 }
@@ -674,6 +746,7 @@ impl Node {
 
         async_runtime.spawn(leader_election(Clone::clone(&raft), Clone::clone(&rx)));
         async_runtime.spawn(heartbeat(Clone::clone(&raft), Clone::clone(&rx)));
+        async_runtime.spawn(apply_log(Clone::clone(&raft), Clone::clone(&rx)));
 
         Node {
             raft,
