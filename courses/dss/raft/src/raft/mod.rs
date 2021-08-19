@@ -1,7 +1,7 @@
 use futures::channel::mpsc::UnboundedSender;
 use futures::SinkExt;
 use rand::{self, Rng};
-use std::cmp::min;
+use std::cmp::{max, min};
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::{Arc, Mutex};
 use tokio::runtime;
@@ -52,41 +52,6 @@ pub enum Role {
     Leader,
 }
 
-#[derive(Debug, Clone)]
-pub struct LogEntry {
-    term: u64,
-    index: u64,
-    command: Vec<u8>,
-}
-
-impl LogEntry {
-    pub fn new(entry: append_entries_args::Entry) -> Self {
-        LogEntry {
-            term: entry.term,
-            index: entry.index,
-            command: entry.command,
-        }
-    }
-
-    pub fn from_parameter(term: u64, index: u64, command: Vec<u8>) -> Self {
-        LogEntry {
-            term,
-            index,
-            command,
-        }
-    }
-
-    pub fn get_term(&self) -> u64 {
-        self.term
-    }
-    pub fn get_index(&self) -> u64 {
-        self.index
-    }
-    pub fn get_command(&self) -> Vec<u8> {
-        self.command.clone()
-    }
-}
-
 #[derive(Debug, Clone, Default)]
 pub struct ElectionTimeOut {
     duration: time::Duration,
@@ -127,7 +92,6 @@ pub struct Raft {
     voted_for: Option<usize>,
     // current_term init by 0
     current_term: u64,
-
     // role
     role: Role,
     // index of highest log entry
@@ -201,28 +165,46 @@ impl Raft {
     fn persist(&mut self) {
         // Your code here (2C).
         // Example:
-        // labcodec::encode(&self.xxx, &mut data).unwrap();
-        // labcodec::encode(&self.yyy, &mut data).unwrap();
-        // self.persister.save_raft_state(data);
+        info!("[persistent]: start persist");
+        let persistent_state = PersistentState {
+            current_term: self.current_term,
+            entries: self.logs.clone(),
+            voted_for: self.voted_for.unwrap_or(u64::MAX as usize) as u64,
+        };
+        let mut data = vec![];
+        labcodec::encode(&persistent_state, &mut data).unwrap();
+        // labcodec::encode(&self.voted_for, &mut data).unwrap();
+        // labcodec::encode(&self.logs, &mut data);
+        self.persister.save_raft_state(data);
     }
 
     /// restore previously persisted state.
     fn restore(&mut self, data: &[u8]) {
         if data.is_empty() {
             // bootstrap without any state?
-            // return;
+            return;
         }
         // Your code here (2C).
         // Example:
-        // match labcodec::decode(data) {
-        //     Ok(o) => {
-        //         self.xxx = o.xxx;
-        //         self.yyy = o.yyy;
-        //     }
-        //     Err(e) => {
-        //         panic!("{:?}", e);
-        //     }
-        // }
+        info!("[persistent]: restore from persist");
+        match labcodec::decode(data) {
+            Ok(PersistentState {
+                current_term,
+                voted_for,
+                entries,
+            }) => {
+                self.current_term = current_term;
+                self.logs = entries;
+                self.voted_for = if voted_for == u64::MAX {
+                    None
+                } else {
+                    Some(voted_for as usize)
+                }
+            }
+            Err(e) => {
+                panic!("{:?}", e);
+            }
+        }
     }
 
     /// example code to send a RequestVote RPC to a server.
@@ -317,6 +299,7 @@ impl Raft {
             self.update_receiver_time();
         }
 
+        self.persist();
         Ok(reply)
     }
 
@@ -342,26 +325,34 @@ impl Raft {
         let mut reply = AppendEntriesReply {
             term: self.current_term,
             success: false,
+            conflict_index: 0,
+            conflict_term: 0,
         };
 
         if self.current_term > args.term {
             return Ok(reply);
         }
 
-        if self.current_term < args.term {
+        if self.current_term < args.term || self.role == Role::Candidate {
             self.convert_to_follower(args.term);
         }
 
-        if self.role == Role::Candidate {
-            self.convert_to_follower(args.term);
-        }
         if args.prev_log_index > 0 {
             if let Some(log) = self.get_log_entry(args.prev_log_index as usize) {
-                if log.get_term() != args.prev_log_term {
-                    self.truncate_log(log.get_index() as usize);
+                if log.term != args.prev_log_term {
+                    reply.conflict_term = log.term;
+                    reply.conflict_index = self
+                        .logs
+                        .iter()
+                        .find(|&x| x.term == log.term)
+                        .map(|x| x.index)
+                        .unwrap();
+                    self.truncate_log(log.index as usize);
                     return Ok(reply);
                 }
             } else {
+                reply.conflict_index = self.last_log_index();
+                reply.conflict_term = self.last_log_term();
                 return Ok(reply);
             }
         }
@@ -369,11 +360,11 @@ impl Raft {
         for entry in args.entries.iter() {
             if let Some(log) = self.get_log_entry(entry.index as usize) {
                 if log.term != entry.term {
-                    self.truncate_log(log.get_index() as usize);
-                    self.logs.push(LogEntry::new(entry.to_owned()));
+                    self.truncate_log(log.index as usize);
+                    self.logs.push(entry.to_owned());
                 }
             } else {
-                self.logs.push(LogEntry::new(entry.to_owned()));
+                self.logs.push(entry.to_owned());
             }
         }
 
@@ -382,7 +373,7 @@ impl Raft {
         }
 
         reply.success = true;
-
+        self.persist();
         Ok(reply)
     }
 
@@ -396,11 +387,16 @@ impl Raft {
             let mut buf = vec![];
             labcodec::encode(command, &mut buf).map_err(Error::Encode)?;
             // Your code here (2B).
-            let log_entry = LogEntry::from_parameter(term, index as u64, buf);
+            let log_entry = LogEntry {
+                term,
+                index,
+                command: buf,
+            };
             info!("leader: {}, recevice from client {:?}", self.me, log_entry);
             self.logs.push(log_entry);
             self.next_index[self.me] = index as u64 + 1;
             self.match_index[self.me] = index as u64;
+            self.persist();
 
             Ok((index as u64, term))
         } else {
@@ -417,6 +413,7 @@ impl Raft {
         self.role = Role::Follower;
         self.voted_for = None;
         self.current_term = term;
+        self.persist();
     }
 
     fn convert_to_candidate(&mut self) {
@@ -424,6 +421,7 @@ impl Raft {
         self.role = Role::Candidate;
         self.current_term += 1;
         self.voted_for = Some(self.me);
+        self.persist();
     }
 
     fn covert_to_leader(&mut self) {
@@ -441,11 +439,11 @@ impl Raft {
     }
 
     fn last_log_index(&self) -> u64 {
-        self.logs.last().map_or(1, |log| log.get_index())
+        self.logs.last().map_or(1, |log| log.index)
     }
 
     fn last_log_term(&self) -> u64 {
-        self.logs.last().map_or(0, |log| log.get_term())
+        self.logs.last().map_or(0, |log| log.term)
     }
 
     fn generate_append_entries_rpc_request(&self, peer: usize) -> AppendEntriesArgs {
@@ -466,11 +464,7 @@ impl Raft {
 
         for idx in next_index..=self.last_log_index() {
             let log = self.get_log_entry(idx as usize).unwrap();
-            args.entries.push(append_entries_args::Entry {
-                term: log.get_term(),
-                index: log.get_index(),
-                command: log.get_command(),
-            });
+            args.entries.push(log);
         }
 
         args
@@ -659,8 +653,21 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
                         "[heartbeat].[rx] from:{}, leader: {}, heartbeat reply: {:?}",
                         peer, rt.me, reply
                     );
+
+                    if rt.current_term < reply.term {
+                        rt.convert_to_follower(reply.term);
+                        return;
+                    }
                     if !reply.success {
-                        rt.next_index[peer] -= 1;
+                        // rt.next_index[peer] -= 1;
+                        rt.next_index[peer] = min(
+                            rt.next_index[peer],
+                            rt.logs
+                                .iter()
+                                .find(|x| x.term == reply.conflict_term)
+                                .map_or(reply.conflict_index, |x| x.index),
+                        );
+                        rt.next_index[peer] = max(rt.next_index[peer], 1);
                     } else {
                         let last = args.prev_log_index + args.entries.len() as u64;
                         rt.next_index[peer] = last + 1;
@@ -670,10 +677,6 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
                         //     rt.next_index, rt.match_index, rt.commit_index
                         // );
                         rt.update_commit_index(last);
-                    }
-                    if rt.current_term < reply.term {
-                        rt.convert_to_follower(reply.term);
-                        return;
                     }
                 }
             });
@@ -701,8 +704,8 @@ async fn apply_log(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
 
         for log in logs {
             let am = ApplyMsg {
-                command: log.get_command(),
-                command_index: log.get_index(),
+                command: log.command,
+                command_index: log.index,
                 command_valid: true,
             };
 
