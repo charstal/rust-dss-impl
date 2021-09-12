@@ -165,7 +165,7 @@ impl Raft {
     fn persist(&mut self) {
         // Your code here (2C).
         // Example:
-        info!("[persistent]: start persist");
+        // info!("[persistent]: start persist");
         let persistent_state = PersistentState {
             current_term: self.current_term,
             entries: self.logs.clone(),
@@ -173,8 +173,6 @@ impl Raft {
         };
         let mut data = vec![];
         labcodec::encode(&persistent_state, &mut data).unwrap();
-        // labcodec::encode(&self.voted_for, &mut data).unwrap();
-        // labcodec::encode(&self.logs, &mut data);
         self.persister.save_raft_state(data);
     }
 
@@ -186,7 +184,7 @@ impl Raft {
         }
         // Your code here (2C).
         // Example:
-        info!("[persistent]: restore from persist");
+        // info!("[persistent]: restore from persist");
         match labcodec::decode(data) {
             Ok(PersistentState {
                 current_term,
@@ -392,7 +390,7 @@ impl Raft {
                 index,
                 command: buf,
             };
-            info!("leader: {}, recevice from client {:?}", self.me, log_entry);
+            // info!("leader: {}, recevice from client {:?}", self.me, log_entry);
             self.logs.push(log_entry);
             self.next_index[self.me] = index as u64 + 1;
             self.match_index[self.me] = index as u64;
@@ -429,6 +427,8 @@ impl Raft {
         for i in 0..self.peers.len() {
             self.next_index[i] = self.last_log_index() + 1;
         }
+        // no-op  test2b has two test cannot pass, because it uses index to panic
+        // self.start(&vec![]).unwrap();
     }
 
     fn get_log_entry(&self, index: usize) -> Option<LogEntry> {
@@ -560,10 +560,10 @@ async fn start_election(raft: Arc<Mutex<Raft>>) {
 
         for index in 0..num_of_peers {
             if index != rt.me {
-                info!(
-                    "[election]: candidate: {}\t follower: {}\t args: {:?}",
-                    rt.me, index, args
-                );
+                // info!(
+                //     "[election]: candidate: {}\t follower: {}\t args: {:?}",
+                //     rt.me, index, args
+                // );
                 let rx = rt.send_request_vote(index, args.clone());
                 rxs.push(rx);
             }
@@ -580,7 +580,7 @@ async fn start_election(raft: Arc<Mutex<Raft>>) {
         let raft = Clone::clone(&raft);
         tokio::spawn(async move {
             if let Ok(Ok(reply)) = rx.await {
-                info!("[election]: reply {:?}", reply);
+                // info!("[election]: reply {:?}", reply);
                 if reply.vote_granted {
                     gvc.fetch_add(1, Ordering::Relaxed);
                 } else {
@@ -634,10 +634,10 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
                 // index of log entry immediately preceding new ones
                 let args = rt.generate_append_entries_rpc_request(peer);
                 if peer != rt.me {
-                    info!(
-                        "[heartbeat].[tx]: leader: {}\t follower: {}\t args: {:?}\n",
-                        rt.me, peer, args
-                    );
+                    // info!(
+                    //     "[heartbeat].[tx]: leader: {}\t follower: {}\t args: {:?}\n",
+                    //     rt.me, peer, args
+                    // );
                     let rx = rt.send_append_entries(peer, args.clone());
                     rxs.push((peer, args, rx));
                 }
@@ -649,10 +649,10 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
             tokio::spawn(async move {
                 if let Ok(Ok(reply)) = rx.await {
                     let mut rt = raft.lock().unwrap();
-                    info!(
-                        "[heartbeat].[rx] from:{}, leader: {}, heartbeat reply: {:?}",
-                        peer, rt.me, reply
-                    );
+                    // info!(
+                    //     "[heartbeat].[rx] from:{}, leader: {}, heartbeat reply: {:?}",
+                    //     peer, rt.me, reply
+                    // );
 
                     if rt.current_term < reply.term {
                         rt.convert_to_follower(reply.term);

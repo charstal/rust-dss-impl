@@ -1,7 +1,17 @@
-use futures::channel::mpsc::unbounded;
+use futures::channel::mpsc::{unbounded, UnboundedReceiver};
+use futures::executor::ThreadPool;
+use futures::task::SpawnExt;
+use futures::StreamExt;
+use std::collections::{BTreeMap, HashMap};
+use std::sync::{Arc, Mutex};
+// use tokio::runtime::Runtime;
+use tokio::sync::{
+    oneshot::{self, Sender},
+    watch,
+};
 
 use crate::proto::kvraftpb::*;
-use crate::raft;
+use crate::raft::{self, ApplyMsg};
 
 pub struct KvServer {
     pub rf: raft::Node,
@@ -9,6 +19,14 @@ pub struct KvServer {
     // snapshot if log grows this big
     maxraftstate: Option<usize>,
     // Your definitions here.
+    // kv store
+    kv_store: BTreeMap<String, String>,
+    // record of each clent request seq
+    client_seq: HashMap<String, u64>,
+    // raft channel
+    apply_ch: Option<UnboundedReceiver<ApplyMsg>>,
+    // result sender channel
+    result_ch: HashMap<u64, Sender<(u64, Option<String>)>>,
 }
 
 impl KvServer {
@@ -22,8 +40,17 @@ impl KvServer {
 
         let (tx, apply_ch) = unbounded();
         let rf = raft::Raft::new(servers, me, persister, tx);
+        let rf_node = raft::Node::new(rf);
 
-        crate::your_code_here((rf, maxraftstate, apply_ch))
+        KvServer {
+            rf: rf_node,
+            me,
+            maxraftstate,
+            kv_store: BTreeMap::new(),
+            client_seq: HashMap::new(),
+            apply_ch: Some(apply_ch),
+            result_ch: HashMap::new(),
+        }
     }
 }
 
@@ -33,6 +60,87 @@ impl KvServer {
     pub fn __suppress_deadcode(&mut self) {
         let _ = &self.me;
         let _ = &self.maxraftstate;
+    }
+
+    pub fn is_leader(&self) -> bool {
+        self.rf.is_leader()
+    }
+
+    pub fn get_apply_channel(&mut self) -> UnboundedReceiver<ApplyMsg> {
+        self.apply_ch.take().unwrap()
+    }
+
+    pub fn get(&self, key: String) -> String {
+        match self.kv_store.get(&key) {
+            Some(value) => value.clone(),
+            None => String::new(),
+        }
+    }
+
+    pub fn append(&mut self, key: String, value: String) {
+        let entry = self.kv_store.entry(key).or_insert_with(|| "".to_string());
+        *entry += &value;
+    }
+
+    pub fn put(&mut self, key: String, value: String) {
+        self.kv_store.insert(key, value);
+    }
+}
+
+async fn apply_command(server: Arc<Mutex<KvServer>>, stop_signal: Arc<watch::Receiver<bool>>) {
+    let mut rx = {
+        let mut server = server.lock().unwrap();
+        server.get_apply_channel()
+    };
+    while !*stop_signal.borrow() {
+        if let Some(apply_msg) = rx.next().await {
+            if !apply_msg.command_valid {
+                continue;
+            }
+            if apply_msg.command.is_empty() {
+                continue;
+            }
+
+            let command = match labcodec::decode::<Command>(&apply_msg.command) {
+                Ok(cmd) => cmd,
+                _ => continue,
+            };
+            let (value, ch) = {
+                let mut server = server.lock().unwrap();
+
+                let ch = server.result_ch.remove(&apply_msg.command_index);
+
+                let entry = server
+                    .client_seq
+                    .entry(command.identifier.clone())
+                    .or_insert(0);
+                // info!(
+                //     "[server]: current seq:{}, command from:{}, {:?}",
+                //     entry, command.identifier, command
+                // );
+                let value = match (command.op, *entry < command.seq) {
+                    (3, _) => Some(server.get(command.key)),
+                    (2, true) => {
+                        server.append(command.key, command.value);
+                        // server.client_seq.insert(command.identifier, command.seq);
+                        None
+                    }
+                    (1, true) => {
+                        server.put(command.key, command.value);
+                        // server.client_seq.insert(command.identifier, command.seq);
+                        None
+                    }
+                    _ => None,
+                };
+                server.client_seq.insert(command.identifier, command.seq);
+                // info!("[server][store]: {:?}", server.kv_store);
+
+                (value, ch)
+            };
+            if let Some(ch) = ch {
+                ch.send((server.lock().unwrap().rf.term(), value)).unwrap();
+            }
+        }
     }
 }
 
@@ -53,12 +161,29 @@ impl KvServer {
 #[derive(Clone)]
 pub struct Node {
     // Your definitions here.
+    server: Arc<Mutex<KvServer>>,
+    thread_pool: Arc<ThreadPool>,
+
+    stop_channel: Arc<watch::Sender<bool>>,
 }
 
 impl Node {
     pub fn new(kv: KvServer) -> Node {
         // Your code here.
-        crate::your_code_here(kv);
+        // let runtime = Arc::new(Runtime::new().unwrap());
+        let server = Arc::new(Mutex::new(kv));
+        let thread_pool = Arc::new(ThreadPool::new().unwrap());
+
+        let (tx, rx) = watch::channel(false);
+        thread_pool
+            .spawn(apply_command(Clone::clone(&server), Arc::new(rx)))
+            .unwrap();
+
+        Node {
+            server,
+            thread_pool,
+            stop_channel: Arc::new(tx),
+        }
     }
 
     /// the tester calls kill() when a KVServer instance won't
@@ -70,7 +195,9 @@ impl Node {
         // you should call `raft::Node::kill` here also to prevent resource leaking.
         // Since the test framework will call kvraft::Node::kill only.
         // self.server.kill();
-
+        let rf = &self.server.lock().unwrap().rf;
+        rf.kill();
+        self.stop_channel.send(true).unwrap();
         // Your code here, if desired.
     }
 
@@ -86,8 +213,10 @@ impl Node {
 
     pub fn get_state(&self) -> raft::State {
         // Your code here.
+        let server = self.server.lock().unwrap();
         raft::State {
-            ..Default::default()
+            term: server.rf.term(),
+            is_leader: server.rf.is_leader(),
         }
     }
 }
@@ -97,12 +226,133 @@ impl KvService for Node {
     // CAVEATS: Please avoid locking or sleeping here, it may jam the network.
     async fn get(&self, arg: GetRequest) -> labrpc::Result<GetReply> {
         // Your code here.
-        crate::your_code_here(arg)
+        let server = self.server.clone();
+        self.thread_pool
+            .spawn_with_handle(async move {
+                let GetRequest {
+                    key,
+                    identifier,
+                    seq,
+                } = arg;
+                let mut reply = GetReply {
+                    wrong_leader: false,
+                    err: "".to_string(),
+                    value: "".to_string(),
+                };
+
+                let (tx, rx) = oneshot::channel();
+
+                let current_term = {
+                    let mut server = server.lock().unwrap();
+                    if !server.is_leader() {
+                        reply.wrong_leader = true;
+                        return Ok(reply);
+                    }
+                    // let server_seq = server.client_seq.entry(identifier.clone()).or_insert(0);
+                    let current_term;
+                    // if seq > *server_seq {
+                    let cmd = Command {
+                        op: 3,
+                        key,
+                        value: "".to_string(),
+                        identifier,
+                        seq,
+                    };
+
+                    match server.rf.start(&cmd) {
+                        Err(_) => {
+                            reply.wrong_leader = true;
+                            return Ok(reply);
+                        }
+                        Ok((index, term)) => {
+                            server.result_ch.insert(index, tx);
+                            current_term = term;
+                        }
+                    }
+                    // }
+                    current_term
+                };
+                match rx.await {
+                    Ok((term, value)) => {
+                        if current_term != term {
+                            reply.err = "leader changed".to_string();
+                        } else {
+                            reply.value = value.unwrap_or_else(|| "".to_string());
+                        }
+                    }
+                    Err(_) => {
+                        return Err(labrpc::Error::Recv(futures::channel::oneshot::Canceled));
+                    }
+                }
+                Ok(reply)
+            })
+            .unwrap()
+            .await
+        // hanlder.unwrap().await
     }
 
     // CAVEATS: Please avoid locking or sleeping here, it may jam the network.
     async fn put_append(&self, arg: PutAppendRequest) -> labrpc::Result<PutAppendReply> {
         // Your code here.
-        crate::your_code_here(arg)
+        let server = self.server.clone();
+        self.thread_pool
+            .spawn_with_handle(async move {
+                let PutAppendRequest {
+                    key,
+                    value,
+                    op,
+                    identifier,
+                    seq,
+                } = arg;
+                let mut reply = PutAppendReply {
+                    wrong_leader: false,
+                    err: "".to_string(),
+                };
+                let (tx, rx) = oneshot::channel();
+
+                let current_term = {
+                    let mut server = server.lock().unwrap();
+                    if !server.is_leader() {
+                        reply.wrong_leader = true;
+                        return Ok(reply);
+                    }
+                    // let server_seq = server.client_seq.entry(identifier.clone()).or_insert(0);
+                    let current_term;
+                    // if seq > *server_seq {
+                    let cmd = Command {
+                        op,
+                        key,
+                        value,
+                        identifier,
+                        seq,
+                    };
+                    match server.rf.start(&cmd) {
+                        Err(_) => {
+                            reply.wrong_leader = true;
+                            return Ok(reply);
+                        }
+                        Ok((index, term)) => {
+                            server.result_ch.insert(index, tx);
+                            current_term = term;
+                        }
+                    }
+                    // }
+                    current_term
+                };
+                match rx.await {
+                    Ok((term, _)) => {
+                        if current_term != term {
+                            reply.err = "leader changed".to_string();
+                        }
+                    }
+                    Err(_e) => {
+                        return Err(labrpc::Error::Recv(futures::channel::oneshot::Canceled));
+                    }
+                }
+
+                Ok(reply)
+            })
+            .unwrap()
+            .await
     }
 }

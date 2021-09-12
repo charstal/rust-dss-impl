@@ -20,6 +20,7 @@ prost = "0.6"
 prost-derive = "0.6"
 rand = "0.7"
 tokio = { version = "1.9.0", features = ["full"] }
+uuid = { version = "0.7", features = ["serde", "v4"] }
 
 labcodec = { path = "../labcodec" }
 labrpc = { path = "../labrpc" }
