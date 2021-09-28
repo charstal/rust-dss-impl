@@ -21,10 +21,20 @@ use self::persister::*;
 // use crate::kvraft::client;
 use crate::proto::raftpb::*;
 
-pub struct ApplyMsg {
-    pub command_valid: bool,
-    pub command: Vec<u8>,
-    pub command_index: u64,
+/// As each Raft peer becomes aware that successive log entries are committed,
+/// the peer should send an `ApplyMsg` to the service (or tester) on the same
+/// server, via the `apply_ch` passed to `Raft::new`.
+pub enum ApplyMsg {
+    Command {
+        data: Vec<u8>,
+        index: u64,
+    },
+    // For 2D:
+    Snapshot {
+        data: Vec<u8>,
+        term: u64,
+        index: u64,
+    },
 }
 
 /// State of a raft peer.
@@ -501,6 +511,20 @@ impl Raft {
         }
         self.commit_index = commit_idx;
     }
+    fn cond_install_snapshot(
+        &mut self,
+        last_included_term: u64,
+        last_included_index: u64,
+        snapshot: &[u8],
+    ) -> bool {
+        // Your code here (2D).
+        crate::your_code_here((last_included_term, last_included_index, snapshot));
+    }
+
+    fn snapshot(&mut self, index: u64, snapshot: &[u8]) {
+        // Your code here (2D).
+        crate::your_code_here((index, snapshot));
+    }
 }
 
 impl Raft {
@@ -508,6 +532,8 @@ impl Raft {
     #[doc(hidden)]
     pub fn __suppress_deadcode(&mut self) {
         let _ = self.start(&0);
+        let _ = self.cond_install_snapshot(0, 0, &[]);
+        let _ = self.snapshot(0, &[]);
         let _ = self.send_request_vote(0, Default::default());
         self.persist();
         // let _ = &self.state;
@@ -703,10 +729,9 @@ async fn apply_log(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
         }
 
         for log in logs {
-            let am = ApplyMsg {
-                command: log.command,
-                command_index: log.index,
-                command_valid: true,
+            let am = ApplyMsg::Command {
+                data: log.command,
+                index: log.index,
             };
 
             let _ = apply_ch.send(am).await;
@@ -814,6 +839,33 @@ impl Node {
         // Your code here, if desired.
         // info!("End server");
         self.stop_signal_tx.send(true).unwrap();
+    }
+
+    /// A service wants to switch to snapshot.  
+    ///
+    /// Only do so if Raft hasn't have more recent info since it communicate
+    /// the snapshot on `apply_ch`.
+    pub fn cond_install_snapshot(
+        &self,
+        last_included_term: u64,
+        last_included_index: u64,
+        snapshot: &[u8],
+    ) -> bool {
+        // Your code here.
+        // Example:
+        // self.raft.cond_install_snapshot(last_included_term, last_included_index, snapshot)
+        crate::your_code_here((last_included_term, last_included_index, snapshot));
+    }
+
+    /// The service says it has created a snapshot that has all info up to and
+    /// including index. This means the service no longer needs the log through
+    /// (and including) that index. Raft should now trim its log as much as
+    /// possible.
+    pub fn snapshot(&self, index: u64, snapshot: &[u8]) {
+        // Your code here.
+        // Example:
+        // self.raft.snapshot(index, snapshot)
+        crate::your_code_here((index, snapshot));
     }
 }
 
