@@ -86,6 +86,49 @@ impl ElectionTimeOut {
         &self.duration
     }
 }
+#[derive(Default, Debug, Clone)]
+pub struct Log {
+    entries: Vec<LogEntry>,
+    last_included_index: u64,
+    last_included_term: u64,
+}
+
+impl Log {
+    pub fn new() -> Self {
+        Log {
+            entries: vec![],
+            last_included_index: 0,
+            last_included_term: 0,
+        }
+    }
+
+    pub fn truncate_log(&mut self, index: u64) {
+        self.entries
+            .drain(((index - self.last_included_index - 1) as usize)..);
+    }
+
+    pub fn log_clone(&self) -> Vec<LogEntry> {
+        self.entries.clone()
+    }
+
+    pub fn last(&self) -> Option<&LogEntry> {
+        self.entries.last()
+    }
+
+    pub fn push(&mut self, log_entry: LogEntry) {
+        self.entries.push(log_entry)
+    }
+
+    pub fn get(&self, index: u64) -> Option<&LogEntry> {
+        // log index from 1  but, vec index from 0, need to -1
+        self.entries
+            .get((index - self.last_included_index - 1) as usize)
+    }
+
+    pub fn find_conflict_entry(&self, term: u64) -> Option<&LogEntry> {
+        self.entries.iter().find(|&x| x.term == term)
+    }
+}
 
 // A single Raft peer.
 pub struct Raft {
@@ -113,7 +156,7 @@ pub struct Raft {
     // index of highest log entry known to be replicated on server
     match_index: Vec<u64>,
     // log
-    logs: Vec<LogEntry>,
+    logs: Log,
     // send newly committed messages
     apply_ch: UnboundedSender<ApplyMsg>,
     // time log
@@ -154,11 +197,7 @@ impl Raft {
             match_index: vec![0; num_of_peers],
 
             // fill one replacement, start from one
-            logs: vec![LogEntry {
-                term: 0,
-                index: 0,
-                command: vec![],
-            }],
+            logs: Log::new(),
             apply_ch,
             last_receive_time: time::Instant::now(),
         };
@@ -178,7 +217,7 @@ impl Raft {
         info!("[persistent]: start persist");
         let persistent_state = PersistentState {
             current_term: self.current_term,
-            entries: self.logs.clone(),
+            entries: self.logs.log_clone(),
             voted_for: self.voted_for.unwrap_or(u64::MAX as usize) as u64,
         };
         let mut data = vec![];
@@ -204,7 +243,11 @@ impl Raft {
                 entries,
             }) => {
                 self.current_term = current_term;
-                self.logs = entries;
+                self.logs = Log {
+                    entries,
+                    last_included_index: 0,
+                    last_included_term: 0,
+                };
                 self.voted_for = if voted_for == u64::MAX {
                     None
                 } else {
@@ -348,16 +391,15 @@ impl Raft {
         }
 
         if args.prev_log_index > 0 {
-            if let Some(log) = self.get_log_entry(args.prev_log_index as usize) {
+            if let Some(log) = self.get_log_entry(args.prev_log_index) {
                 if log.term != args.prev_log_term {
                     reply.conflict_term = log.term;
                     reply.conflict_index = self
                         .logs
-                        .iter()
-                        .find(|&x| x.term == log.term)
+                        .find_conflict_entry(log.term)
                         .map(|x| x.index)
                         .unwrap();
-                    self.truncate_log(log.index as usize);
+                    self.truncate_log(log.index);
                     return Ok(reply);
                 }
             } else {
@@ -368,9 +410,9 @@ impl Raft {
         }
 
         for entry in args.entries.iter() {
-            if let Some(log) = self.get_log_entry(entry.index as usize) {
+            if let Some(log) = self.get_log_entry(entry.index) {
                 if log.term != entry.term {
-                    self.truncate_log(log.index as usize);
+                    self.truncate_log(log.index);
                     self.logs.push(entry.to_owned());
                 }
             } else {
@@ -441,7 +483,7 @@ impl Raft {
         }
     }
 
-    fn get_log_entry(&self, index: usize) -> Option<LogEntry> {
+    fn get_log_entry(&self, index: u64) -> Option<LogEntry> {
         match index {
             0 => None,
             idx => self.logs.get(idx).map(|x| x.to_owned()),
@@ -449,7 +491,7 @@ impl Raft {
     }
 
     fn last_log_index(&self) -> u64 {
-        self.logs.last().map_or(1, |log| log.index)
+        self.logs.last().map_or(0, |log| log.index)
     }
 
     fn last_log_term(&self) -> u64 {
@@ -467,13 +509,13 @@ impl Raft {
         };
 
         let next_index = self.next_index[peer];
-        if let Some(prev_log) = self.get_log_entry((next_index - 1) as usize) {
+        if let Some(prev_log) = self.get_log_entry(next_index - 1) {
             args.prev_log_index = prev_log.index;
             args.prev_log_term = prev_log.term;
         }
 
         for idx in next_index..=self.last_log_index() {
-            let log = self.get_log_entry(idx as usize).unwrap();
+            let log = self.get_log_entry(idx).unwrap();
             args.entries.push(log);
         }
 
@@ -489,8 +531,8 @@ impl Raft {
         }
     }
 
-    fn truncate_log(&mut self, index: usize) {
-        self.logs.drain(index..);
+    fn truncate_log(&mut self, index: u64) {
+        self.logs.truncate_log(index);
     }
 
     fn update_commit_index(&mut self, commit_idx: u64) {
@@ -511,6 +553,7 @@ impl Raft {
         }
         self.commit_index = commit_idx;
     }
+
     fn cond_install_snapshot(
         &mut self,
         last_included_term: u64,
@@ -550,6 +593,8 @@ impl Raft {
         let _ = &self.next_index;
         let _ = &self.match_index;
         let _ = &self.logs;
+        let _ = &self.logs.last_included_term;
+        let _ = &self.logs.last_included_index;
     }
 }
 
@@ -689,8 +734,7 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
                         rt.next_index[peer] = min(
                             rt.next_index[peer],
                             rt.logs
-                                .iter()
-                                .find(|x| x.term == reply.conflict_term)
+                                .find_conflict_entry(reply.conflict_term)
                                 .map_or(reply.conflict_index, |x| x.index),
                         );
                         rt.next_index[peer] = max(rt.next_index[peer], 1);
@@ -721,7 +765,7 @@ async fn apply_log(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
             let mut rt = raft.lock().unwrap();
             if rt.last_applied < rt.commit_index {
                 for idx in rt.last_applied + 1..=rt.commit_index {
-                    let log = rt.get_log_entry(idx as usize).unwrap();
+                    let log = rt.get_log_entry(idx).unwrap();
                     logs.push(log);
                 }
             }
@@ -854,7 +898,11 @@ impl Node {
         // Your code here.
         // Example:
         // self.raft.cond_install_snapshot(last_included_term, last_included_index, snapshot)
-        crate::your_code_here((last_included_term, last_included_index, snapshot));
+        self.raft.lock().unwrap().cond_install_snapshot(
+            last_included_term,
+            last_included_index,
+            snapshot,
+        )
     }
 
     /// The service says it has created a snapshot that has all info up to and
@@ -865,7 +913,7 @@ impl Node {
         // Your code here.
         // Example:
         // self.raft.snapshot(index, snapshot)
-        crate::your_code_here((index, snapshot));
+        self.raft.lock().unwrap().snapshot(index, snapshot);
     }
 }
 
@@ -895,5 +943,17 @@ impl RaftService for Node {
             })
             .await
             .unwrap()
+    }
+
+    async fn install_snapshot(
+        &self,
+        _args: InstallSnapshotArgs,
+    ) -> labrpc::Result<InstallSnapshotReply> {
+        // let raft = Clone::clone(&self.raft);
+        // self.async_runtime.spawn(async move {
+        //     let mut raft = raft.lock().unwrap();
+        //     raft.
+        // })
+        unimplemented!()
     }
 }
