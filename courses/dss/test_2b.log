@@ -1,0 +1,794 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished test [unoptimized + debuginfo] target(s) in 0.31s
+     Running unittests (target/debug/deps/raft-c4134cd01e494b0d)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] disconnect(3)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] disconnect(4)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] connect(3)
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] connect(4)
+[2021-10-12T03:41:35Z INFO  raft::raft::config] Test (2B): leader backs up quickly over incorrect follower logs ...
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z DEBUG raft::raft::config] start cmd Entry { x: 8491786152940019636 } failed: NotLeader
+[2021-10-12T03:41:35Z INFO  raft::raft] Raft(1,term=1,l=[0,1],Leader,la:0,ci:0), start index LogEntry { index: 1, term: 1, command: [160, 6, 180, 191, 200, 148, 188, 208, 184, 236, 117] }
+[2021-10-12T03:41:35Z INFO  raft::raft] Raft(1,term=1,l=[0,1],Leader,la:0,ci:1) commit to index 1
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] disconnect(3)
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] disconnect(4)
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,2],Leader,la:1,ci:1), start index LogEntry { index: 2, term: 1, command: [160, 6, 176, 213, 161, 188, 242, 139, 199, 227, 194, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,3],Leader,la:1,ci:1), start index LogEntry { index: 3, term: 1, command: [160, 6, 255, 186, 237, 221, 206, 175, 252, 241, 237, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,4],Leader,la:1,ci:1), start index LogEntry { index: 4, term: 1, command: [160, 6, 192, 250, 137, 235, 175, 234, 175, 198, 165, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,5],Leader,la:1,ci:1), start index LogEntry { index: 5, term: 1, command: [160, 6, 245, 243, 128, 138, 129, 237, 194, 212, 151, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,6],Leader,la:1,ci:1), start index LogEntry { index: 6, term: 1, command: [160, 6, 192, 142, 185, 240, 221, 160, 182, 240, 111] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,7],Leader,la:1,ci:1), start index LogEntry { index: 7, term: 1, command: [160, 6, 220, 231, 221, 190, 171, 242, 232, 163, 247, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,8],Leader,la:1,ci:1), start index LogEntry { index: 8, term: 1, command: [160, 6, 150, 222, 203, 156, 149, 141, 242, 154, 59] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,9],Leader,la:1,ci:1), start index LogEntry { index: 9, term: 1, command: [160, 6, 223, 246, 146, 184, 133, 166, 246, 230, 119] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,10],Leader,la:1,ci:1), start index LogEntry { index: 10, term: 1, command: [160, 6, 177, 139, 197, 140, 243, 206, 164, 163, 124] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,11],Leader,la:1,ci:1), start index LogEntry { index: 11, term: 1, command: [160, 6, 231, 130, 229, 169, 132, 251, 245, 166, 158, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,12],Leader,la:1,ci:1), start index LogEntry { index: 12, term: 1, command: [160, 6, 198, 137, 173, 220, 185, 177, 173, 129, 23] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,13],Leader,la:1,ci:1), start index LogEntry { index: 13, term: 1, command: [160, 6, 197, 188, 136, 216, 163, 219, 221, 138, 133, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,14],Leader,la:1,ci:1), start index LogEntry { index: 14, term: 1, command: [160, 6, 251, 158, 237, 154, 174, 249, 140, 202, 181, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,15],Leader,la:1,ci:1), start index LogEntry { index: 15, term: 1, command: [160, 6, 190, 231, 254, 174, 152, 139, 198, 157, 231, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,16],Leader,la:1,ci:1), start index LogEntry { index: 16, term: 1, command: [160, 6, 129, 208, 179, 141, 196, 219, 132, 138, 97] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,17],Leader,la:1,ci:1), start index LogEntry { index: 17, term: 1, command: [160, 6, 182, 232, 205, 183, 182, 133, 232, 216, 84] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,18],Leader,la:1,ci:1), start index LogEntry { index: 18, term: 1, command: [160, 6, 173, 241, 177, 219, 187, 172, 146, 254, 49] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,19],Leader,la:1,ci:1), start index LogEntry { index: 19, term: 1, command: [160, 6, 248, 243, 189, 224, 137, 192, 191, 210, 105] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,20],Leader,la:1,ci:1), start index LogEntry { index: 20, term: 1, command: [160, 6, 253, 163, 186, 134, 162, 204, 191, 243, 111] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,21],Leader,la:1,ci:1), start index LogEntry { index: 21, term: 1, command: [160, 6, 180, 240, 230, 178, 233, 219, 194, 238, 109] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,22],Leader,la:1,ci:1), start index LogEntry { index: 22, term: 1, command: [160, 6, 252, 225, 243, 219, 203, 246, 178, 235, 121] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,23],Leader,la:1,ci:1), start index LogEntry { index: 23, term: 1, command: [160, 6, 197, 141, 164, 217, 200, 144, 134, 155, 152, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,24],Leader,la:1,ci:1), start index LogEntry { index: 24, term: 1, command: [160, 6, 192, 166, 244, 152, 201, 170, 183, 139, 129, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,25],Leader,la:1,ci:1), start index LogEntry { index: 25, term: 1, command: [160, 6, 199, 170, 208, 181, 210, 254, 143, 146, 245, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,26],Leader,la:1,ci:1), start index LogEntry { index: 26, term: 1, command: [160, 6, 164, 166, 160, 220, 158, 200, 230, 214, 53] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,27],Leader,la:1,ci:1), start index LogEntry { index: 27, term: 1, command: [160, 6, 153, 206, 155, 250, 207, 132, 155, 196, 56] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,28],Leader,la:1,ci:1), start index LogEntry { index: 28, term: 1, command: [160, 6, 201, 245, 245, 139, 129, 208, 248, 164, 44] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,29],Leader,la:1,ci:1), start index LogEntry { index: 29, term: 1, command: [160, 6, 185, 158, 232, 254, 226, 217, 153, 224, 71] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,30],Leader,la:1,ci:1), start index LogEntry { index: 30, term: 1, command: [160, 6, 248, 209, 128, 247, 152, 148, 239, 155, 93] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,31],Leader,la:1,ci:1), start index LogEntry { index: 31, term: 1, command: [160, 6, 188, 251, 190, 190, 234, 249, 232, 129, 36] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,32],Leader,la:1,ci:1), start index LogEntry { index: 32, term: 1, command: [160, 6, 169, 212, 153, 141, 139, 131, 211, 141, 183, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,33],Leader,la:1,ci:1), start index LogEntry { index: 33, term: 1, command: [160, 6, 253, 206, 182, 140, 209, 213, 210, 142, 33] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,34],Leader,la:1,ci:1), start index LogEntry { index: 34, term: 1, command: [160, 6, 216, 165, 196, 174, 188, 170, 185, 249, 41] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,35],Leader,la:1,ci:1), start index LogEntry { index: 35, term: 1, command: [160, 6, 132, 185, 241, 150, 191, 167, 177, 199, 143, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,36],Leader,la:1,ci:1), start index LogEntry { index: 36, term: 1, command: [160, 6, 232, 218, 164, 202, 216, 226, 227, 166, 67] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,37],Leader,la:1,ci:1), start index LogEntry { index: 37, term: 1, command: [160, 6, 224, 234, 177, 214, 241, 207, 186, 134, 138, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,38],Leader,la:1,ci:1), start index LogEntry { index: 38, term: 1, command: [160, 6, 209, 203, 146, 235, 234, 222, 128, 196, 71] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,39],Leader,la:1,ci:1), start index LogEntry { index: 39, term: 1, command: [160, 6, 143, 242, 223, 164, 148, 210, 180, 190, 101] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,40],Leader,la:1,ci:1), start index LogEntry { index: 40, term: 1, command: [160, 6, 133, 144, 170, 145, 240, 238, 231, 233, 234, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,41],Leader,la:1,ci:1), start index LogEntry { index: 41, term: 1, command: [160, 6, 161, 199, 192, 237, 247, 144, 156, 129, 183, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,42],Leader,la:1,ci:1), start index LogEntry { index: 42, term: 1, command: [160, 6, 165, 224, 231, 235, 157, 184, 236, 254, 222, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,43],Leader,la:1,ci:1), start index LogEntry { index: 43, term: 1, command: [160, 6, 212, 217, 139, 207, 238, 221, 235, 184, 6] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,44],Leader,la:1,ci:1), start index LogEntry { index: 44, term: 1, command: [160, 6, 228, 151, 139, 187, 171, 243, 255, 157, 203, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,45],Leader,la:1,ci:1), start index LogEntry { index: 45, term: 1, command: [160, 6, 180, 183, 217, 255, 170, 193, 214, 208, 74] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,46],Leader,la:1,ci:1), start index LogEntry { index: 46, term: 1, command: [160, 6, 150, 246, 239, 198, 193, 189, 188, 178, 76] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,47],Leader,la:1,ci:1), start index LogEntry { index: 47, term: 1, command: [160, 6, 185, 146, 174, 239, 166, 204, 169, 245, 153, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,48],Leader,la:1,ci:1), start index LogEntry { index: 48, term: 1, command: [160, 6, 146, 169, 243, 211, 231, 178, 156, 133, 249, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,49],Leader,la:1,ci:1), start index LogEntry { index: 49, term: 1, command: [160, 6, 226, 200, 254, 128, 189, 226, 150, 153, 73] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,50],Leader,la:1,ci:1), start index LogEntry { index: 50, term: 1, command: [160, 6, 208, 220, 218, 172, 223, 186, 242, 143, 145, 1] }
+[2021-10-12T03:41:36Z INFO  raft::raft] Raft(1,term=1,l=[0,51],Leader,la:1,ci:1), start index LogEntry { index: 51, term: 1, command: [160, 6, 244, 207, 195, 174, 193, 162, 147, 130, 4] }
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] connect(3)
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] connect(4)
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:36Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z DEBUG raft::raft::config] start cmd Entry { x: 7554429752750145701 } failed: NotLeader
+[2021-10-12T03:41:37Z INFO  raft::raft] Raft(3,term=3,l=[0,2],Leader,la:1,ci:1), start index LogEntry { index: 2, term: 3, command: [160, 6, 165, 129, 194, 170, 220, 186, 174, 235, 104] }
+[2021-10-12T03:41:37Z INFO  raft::raft] Raft(3,term=3,l=[0,2],Leader,la:1,ci:2) commit to index 2
+[2021-10-12T03:41:37Z INFO  raft::raft] Raft(3,term=3,l=[0,3],Leader,la:2,ci:2), start index LogEntry { index: 3, term: 3, command: [160, 6, 199, 144, 212, 250, 199, 191, 140, 163, 100] }
+[2021-10-12T03:41:37Z INFO  raft::raft] Raft(3,term=3,l=[0,3],Leader,la:2,ci:3) commit to index 3
+[2021-10-12T03:41:37Z INFO  raft::raft] Raft(3,term=3,l=[0,4],Leader,la:3,ci:3), start index LogEntry { index: 4, term: 3, command: [160, 6, 215, 191, 230, 216, 193, 248, 192, 163, 236, 1] }
+[2021-10-12T03:41:37Z INFO  raft::raft] Raft(3,term=3,l=[0,4],Leader,la:3,ci:4) commit to index 4
+[2021-10-12T03:41:37Z INFO  raft::raft] Raft(3,term=3,l=[0,5],Leader,la:4,ci:4), start index LogEntry { index: 5, term: 3, command: [160, 6, 199, 243, 195, 164, 179, 241, 229, 237, 31] }
+[2021-10-12T03:41:37Z INFO  raft::raft] Raft(3,term=3,l=[0,5],Leader,la:4,ci:5) commit to index 5
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,6],Leader,la:5,ci:5), start index LogEntry { index: 6, term: 3, command: [160, 6, 130, 254, 187, 200, 232, 195, 167, 252, 207, 1] }
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,6],Leader,la:5,ci:6) commit to index 6
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,7],Leader,la:6,ci:6), start index LogEntry { index: 7, term: 3, command: [160, 6, 178, 184, 178, 182, 213, 160, 250, 130, 108] }
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,7],Leader,la:6,ci:7) commit to index 7
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,8],Leader,la:7,ci:7), start index LogEntry { index: 8, term: 3, command: [160, 6, 229, 155, 178, 194, 247, 206, 146, 233, 210, 1] }
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,8],Leader,la:7,ci:8) commit to index 8
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,9],Leader,la:8,ci:8), start index LogEntry { index: 9, term: 3, command: [160, 6, 147, 166, 200, 155, 172, 178, 201, 252, 223, 1] }
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,9],Leader,la:8,ci:9) commit to index 9
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,10],Leader,la:9,ci:9), start index LogEntry { index: 10, term: 3, command: [160, 6, 194, 210, 173, 229, 147, 223, 174, 207, 9] }
+[2021-10-12T03:41:38Z INFO  raft::raft] Raft(3,term=3,l=[0,10],Leader,la:9,ci:10) commit to index 10
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,11],Leader,la:10,ci:10), start index LogEntry { index: 11, term: 3, command: [160, 6, 143, 138, 131, 238, 198, 255, 139, 218, 124] }
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,11],Leader,la:10,ci:11) commit to index 11
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,12],Leader,la:11,ci:11), start index LogEntry { index: 12, term: 3, command: [160, 6, 203, 165, 216, 157, 222, 221, 134, 185, 236, 1] }
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,12],Leader,la:11,ci:12) commit to index 12
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,13],Leader,la:12,ci:12), start index LogEntry { index: 13, term: 3, command: [160, 6, 197, 207, 238, 138, 239, 241, 156, 229, 61] }
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,13],Leader,la:12,ci:13) commit to index 13
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,14],Leader,la:13,ci:13), start index LogEntry { index: 14, term: 3, command: [160, 6, 227, 206, 170, 212, 129, 250, 134, 165, 179, 1] }
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,14],Leader,la:13,ci:14) commit to index 14
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,15],Leader,la:14,ci:14), start index LogEntry { index: 15, term: 3, command: [160, 6, 157, 254, 187, 183, 197, 129, 129, 242, 97] }
+[2021-10-12T03:41:39Z INFO  raft::raft] Raft(3,term=3,l=[0,15],Leader,la:14,ci:15) commit to index 15
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,16],Leader,la:15,ci:15), start index LogEntry { index: 16, term: 3, command: [160, 6, 165, 146, 143, 251, 166, 188, 193, 189, 106] }
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,16],Leader,la:15,ci:16) commit to index 16
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,17],Leader,la:16,ci:16), start index LogEntry { index: 17, term: 3, command: [160, 6, 172, 253, 184, 182, 199, 201, 149, 242, 228, 1] }
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,17],Leader,la:16,ci:17) commit to index 17
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,18],Leader,la:17,ci:17), start index LogEntry { index: 18, term: 3, command: [160, 6, 221, 231, 204, 216, 135, 238, 157, 244, 140, 1] }
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,18],Leader,la:17,ci:18) commit to index 18
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,19],Leader,la:18,ci:18), start index LogEntry { index: 19, term: 3, command: [160, 6, 153, 182, 133, 182, 202, 215, 252, 145, 165, 1] }
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,19],Leader,la:18,ci:19) commit to index 19
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,20],Leader,la:19,ci:19), start index LogEntry { index: 20, term: 3, command: [160, 6, 221, 171, 249, 205, 206, 142, 185, 188, 211, 1] }
+[2021-10-12T03:41:40Z INFO  raft::raft] Raft(3,term=3,l=[0,20],Leader,la:19,ci:20) commit to index 20
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,21],Leader,la:20,ci:20), start index LogEntry { index: 21, term: 3, command: [160, 6, 201, 209, 141, 194, 158, 185, 247, 240, 35] }
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,21],Leader,la:20,ci:21) commit to index 21
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,22],Leader,la:21,ci:21), start index LogEntry { index: 22, term: 3, command: [160, 6, 227, 205, 180, 128, 181, 147, 251, 239, 53] }
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,22],Leader,la:21,ci:22) commit to index 22
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,23],Leader,la:22,ci:22), start index LogEntry { index: 23, term: 3, command: [160, 6, 239, 246, 160, 167, 221, 146, 175, 172, 173, 1] }
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,23],Leader,la:22,ci:23) commit to index 23
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,24],Leader,la:23,ci:23), start index LogEntry { index: 24, term: 3, command: [160, 6, 247, 215, 201, 130, 140, 216, 141, 231, 91] }
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,24],Leader,la:23,ci:24) commit to index 24
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,25],Leader,la:24,ci:24), start index LogEntry { index: 25, term: 3, command: [160, 6, 244, 161, 146, 180, 185, 227, 151, 201, 250, 1] }
+[2021-10-12T03:41:41Z INFO  raft::raft] Raft(3,term=3,l=[0,25],Leader,la:24,ci:25) commit to index 25
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,26],Leader,la:25,ci:25), start index LogEntry { index: 26, term: 3, command: [160, 6, 181, 246, 151, 188, 216, 141, 250, 155, 64] }
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,26],Leader,la:25,ci:26) commit to index 26
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,27],Leader,la:26,ci:26), start index LogEntry { index: 27, term: 3, command: [160, 6, 194, 166, 182, 160, 224, 213, 164, 201, 43] }
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,27],Leader,la:26,ci:27) commit to index 27
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,28],Leader,la:27,ci:27), start index LogEntry { index: 28, term: 3, command: [160, 6, 175, 207, 244, 245, 170, 178, 145, 218, 115] }
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,28],Leader,la:27,ci:28) commit to index 28
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,29],Leader,la:28,ci:28), start index LogEntry { index: 29, term: 3, command: [160, 6, 154, 228, 217, 240, 208, 241, 242, 231, 48] }
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,29],Leader,la:28,ci:29) commit to index 29
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,30],Leader,la:29,ci:29), start index LogEntry { index: 30, term: 3, command: [160, 6, 174, 252, 216, 194, 152, 248, 196, 175, 130, 1] }
+[2021-10-12T03:41:42Z INFO  raft::raft] Raft(3,term=3,l=[0,30],Leader,la:29,ci:30) commit to index 30
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,31],Leader,la:30,ci:30), start index LogEntry { index: 31, term: 3, command: [160, 6, 217, 128, 195, 213, 186, 224, 169, 141, 176, 1] }
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,31],Leader,la:30,ci:31) commit to index 31
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,32],Leader,la:31,ci:31), start index LogEntry { index: 32, term: 3, command: [160, 6, 178, 155, 208, 208, 252, 147, 168, 226, 78] }
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,32],Leader,la:31,ci:32) commit to index 32
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,33],Leader,la:32,ci:32), start index LogEntry { index: 33, term: 3, command: [160, 6, 156, 186, 162, 138, 248, 192, 248, 161, 245, 1] }
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,33],Leader,la:32,ci:33) commit to index 33
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,34],Leader,la:33,ci:33), start index LogEntry { index: 34, term: 3, command: [160, 6, 141, 182, 230, 186, 239, 165, 156, 250, 35] }
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,34],Leader,la:33,ci:34) commit to index 34
+[2021-10-12T03:41:43Z INFO  raft::raft] Raft(3,term=3,l=[0,35],Leader,la:34,ci:34), start index LogEntry { index: 35, term: 3, command: [160, 6, 180, 177, 135, 181, 136, 154, 208, 238, 32] }
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,35],Leader,la:34,ci:35) commit to index 35
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,36],Leader,la:35,ci:35), start index LogEntry { index: 36, term: 3, command: [160, 6, 142, 239, 186, 247, 249, 225, 155, 159, 133, 1] }
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,36],Leader,la:35,ci:36) commit to index 36
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,37],Leader,la:36,ci:36), start index LogEntry { index: 37, term: 3, command: [160, 6, 160, 192, 175, 128, 140, 138, 149, 175, 32] }
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,37],Leader,la:36,ci:37) commit to index 37
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,38],Leader,la:37,ci:37), start index LogEntry { index: 38, term: 3, command: [160, 6, 135, 171, 204, 161, 130, 137, 181, 130, 8] }
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,38],Leader,la:37,ci:38) commit to index 38
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,39],Leader,la:38,ci:38), start index LogEntry { index: 39, term: 3, command: [160, 6, 191, 149, 252, 147, 204, 228, 182, 176, 198, 1] }
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,39],Leader,la:38,ci:39) commit to index 39
+[2021-10-12T03:41:44Z INFO  raft::raft] Raft(3,term=3,l=[0,40],Leader,la:39,ci:39), start index LogEntry { index: 40, term: 3, command: [160, 6, 221, 133, 187, 240, 216, 208, 128, 196, 64] }
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,40],Leader,la:39,ci:40) commit to index 40
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,41],Leader,la:40,ci:40), start index LogEntry { index: 41, term: 3, command: [160, 6, 185, 142, 204, 233, 189, 215, 196, 186, 131, 1] }
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,41],Leader,la:40,ci:41) commit to index 41
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,42],Leader,la:41,ci:41), start index LogEntry { index: 42, term: 3, command: [160, 6, 151, 169, 199, 244, 213, 246, 211, 191, 70] }
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,42],Leader,la:41,ci:42) commit to index 42
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,43],Leader,la:42,ci:42), start index LogEntry { index: 43, term: 3, command: [160, 6, 206, 199, 238, 154, 235, 181, 159, 155, 115] }
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,43],Leader,la:42,ci:43) commit to index 43
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,44],Leader,la:43,ci:43), start index LogEntry { index: 44, term: 3, command: [160, 6, 216, 201, 147, 142, 198, 142, 184, 196, 117] }
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,44],Leader,la:43,ci:44) commit to index 44
+[2021-10-12T03:41:45Z INFO  raft::raft] Raft(3,term=3,l=[0,45],Leader,la:44,ci:44), start index LogEntry { index: 45, term: 3, command: [160, 6, 252, 156, 177, 252, 177, 243, 164, 247, 210, 1] }
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,45],Leader,la:44,ci:45) commit to index 45
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,46],Leader,la:45,ci:45), start index LogEntry { index: 46, term: 3, command: [160, 6, 244, 222, 153, 203, 128, 180, 254, 203, 219, 1] }
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,46],Leader,la:45,ci:46) commit to index 46
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,47],Leader,la:46,ci:46), start index LogEntry { index: 47, term: 3, command: [160, 6, 156, 193, 238, 153, 133, 223, 208, 166, 42] }
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,47],Leader,la:46,ci:47) commit to index 47
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,48],Leader,la:47,ci:47), start index LogEntry { index: 48, term: 3, command: [160, 6, 135, 200, 246, 222, 244, 226, 213, 213, 67] }
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,48],Leader,la:47,ci:48) commit to index 48
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,49],Leader,la:48,ci:48), start index LogEntry { index: 49, term: 3, command: [160, 6, 192, 138, 179, 149, 151, 229, 204, 176, 101] }
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,49],Leader,la:48,ci:49) commit to index 49
+[2021-10-12T03:41:46Z INFO  raft::raft] Raft(3,term=3,l=[0,50],Leader,la:49,ci:49), start index LogEntry { index: 50, term: 3, command: [160, 6, 194, 235, 193, 156, 186, 189, 169, 167, 65] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,50],Leader,la:49,ci:50) commit to index 50
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,51],Leader,la:50,ci:50), start index LogEntry { index: 51, term: 3, command: [160, 6, 205, 161, 223, 229, 234, 182, 158, 191, 88] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,51],Leader,la:50,ci:51) commit to index 51
+[2021-10-12T03:41:47Z DEBUG raft::raft::config] disconnect(4)
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,52],Leader,la:51,ci:51), start index LogEntry { index: 52, term: 3, command: [160, 6, 169, 226, 193, 160, 171, 205, 180, 139, 10] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,53],Leader,la:51,ci:51), start index LogEntry { index: 53, term: 3, command: [160, 6, 190, 202, 166, 225, 191, 146, 135, 174, 42] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,54],Leader,la:51,ci:51), start index LogEntry { index: 54, term: 3, command: [160, 6, 150, 240, 196, 245, 151, 234, 241, 244, 206, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,55],Leader,la:51,ci:51), start index LogEntry { index: 55, term: 3, command: [160, 6, 157, 199, 187, 201, 159, 183, 155, 208, 136, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,56],Leader,la:51,ci:51), start index LogEntry { index: 56, term: 3, command: [160, 6, 139, 188, 178, 182, 140, 188, 232, 166, 235, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,57],Leader,la:51,ci:51), start index LogEntry { index: 57, term: 3, command: [160, 6, 228, 173, 152, 224, 137, 222, 176, 198, 73] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,58],Leader,la:51,ci:51), start index LogEntry { index: 58, term: 3, command: [160, 6, 230, 175, 185, 203, 216, 225, 199, 215, 51] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,59],Leader,la:51,ci:51), start index LogEntry { index: 59, term: 3, command: [160, 6, 141, 188, 141, 153, 227, 203, 242, 248, 25] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,60],Leader,la:51,ci:51), start index LogEntry { index: 60, term: 3, command: [160, 6, 149, 219, 170, 170, 214, 140, 198, 233, 111] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,61],Leader,la:51,ci:51), start index LogEntry { index: 61, term: 3, command: [160, 6, 232, 251, 134, 128, 186, 128, 197, 140, 99] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,62],Leader,la:51,ci:51), start index LogEntry { index: 62, term: 3, command: [160, 6, 141, 249, 167, 180, 178, 224, 164, 240, 227, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,63],Leader,la:51,ci:51), start index LogEntry { index: 63, term: 3, command: [160, 6, 172, 150, 187, 158, 224, 148, 151, 212, 164, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,64],Leader,la:51,ci:51), start index LogEntry { index: 64, term: 3, command: [160, 6, 205, 129, 214, 242, 189, 185, 224, 178, 163, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,65],Leader,la:51,ci:51), start index LogEntry { index: 65, term: 3, command: [160, 6, 144, 204, 236, 232, 166, 189, 223, 251, 27] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,66],Leader,la:51,ci:51), start index LogEntry { index: 66, term: 3, command: [160, 6, 208, 196, 188, 178, 128, 171, 134, 161, 18] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,67],Leader,la:51,ci:51), start index LogEntry { index: 67, term: 3, command: [160, 6, 230, 179, 160, 222, 249, 192, 209, 231, 209, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,68],Leader,la:51,ci:51), start index LogEntry { index: 68, term: 3, command: [160, 6, 130, 175, 211, 164, 166, 203, 153, 158, 175, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,69],Leader,la:51,ci:51), start index LogEntry { index: 69, term: 3, command: [160, 6, 191, 240, 165, 245, 201, 168, 160, 173, 175, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,70],Leader,la:51,ci:51), start index LogEntry { index: 70, term: 3, command: [160, 6, 192, 227, 128, 179, 252, 254, 211, 235, 155, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,71],Leader,la:51,ci:51), start index LogEntry { index: 71, term: 3, command: [160, 6, 252, 159, 187, 134, 177, 255, 215, 219, 228, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,72],Leader,la:51,ci:51), start index LogEntry { index: 72, term: 3, command: [160, 6, 201, 143, 151, 181, 142, 153, 201, 130, 156, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,73],Leader,la:51,ci:51), start index LogEntry { index: 73, term: 3, command: [160, 6, 175, 194, 172, 152, 172, 191, 210, 128, 234, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,74],Leader,la:51,ci:51), start index LogEntry { index: 74, term: 3, command: [160, 6, 222, 148, 138, 236, 176, 187, 136, 145, 84] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,75],Leader,la:51,ci:51), start index LogEntry { index: 75, term: 3, command: [160, 6, 233, 134, 156, 184, 137, 146, 158, 245, 162, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,76],Leader,la:51,ci:51), start index LogEntry { index: 76, term: 3, command: [160, 6, 194, 169, 193, 240, 196, 192, 133, 204, 89] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,77],Leader,la:51,ci:51), start index LogEntry { index: 77, term: 3, command: [160, 6, 142, 192, 208, 172, 206, 228, 181, 160, 172, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,78],Leader,la:51,ci:51), start index LogEntry { index: 78, term: 3, command: [160, 6, 196, 253, 224, 141, 238, 225, 159, 206, 189, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,79],Leader,la:51,ci:51), start index LogEntry { index: 79, term: 3, command: [160, 6, 128, 160, 234, 167, 128, 211, 147, 237, 12] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,80],Leader,la:51,ci:51), start index LogEntry { index: 80, term: 3, command: [160, 6, 231, 146, 199, 226, 179, 234, 132, 187, 174, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,81],Leader,la:51,ci:51), start index LogEntry { index: 81, term: 3, command: [160, 6, 144, 158, 225, 208, 244, 174, 255, 246, 123] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,82],Leader,la:51,ci:51), start index LogEntry { index: 82, term: 3, command: [160, 6, 187, 235, 170, 214, 150, 187, 169, 236, 243, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,83],Leader,la:51,ci:51), start index LogEntry { index: 83, term: 3, command: [160, 6, 186, 225, 139, 141, 139, 128, 198, 163, 37] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,84],Leader,la:51,ci:51), start index LogEntry { index: 84, term: 3, command: [160, 6, 137, 129, 227, 178, 227, 151, 225, 249, 120] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,85],Leader,la:51,ci:51), start index LogEntry { index: 85, term: 3, command: [160, 6, 169, 250, 175, 155, 153, 192, 236, 173, 186, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,86],Leader,la:51,ci:51), start index LogEntry { index: 86, term: 3, command: [160, 6, 194, 221, 203, 240, 169, 252, 249, 71] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,87],Leader,la:51,ci:51), start index LogEntry { index: 87, term: 3, command: [160, 6, 176, 229, 162, 253, 214, 225, 215, 201, 129, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,88],Leader,la:51,ci:51), start index LogEntry { index: 88, term: 3, command: [160, 6, 148, 182, 192, 161, 213, 209, 160, 188, 64] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,89],Leader,la:51,ci:51), start index LogEntry { index: 89, term: 3, command: [160, 6, 179, 199, 154, 180, 203, 227, 209, 254, 248, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,90],Leader,la:51,ci:51), start index LogEntry { index: 90, term: 3, command: [160, 6, 189, 172, 212, 218, 210, 131, 188, 172, 15] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,91],Leader,la:51,ci:51), start index LogEntry { index: 91, term: 3, command: [160, 6, 152, 195, 164, 132, 159, 139, 208, 221, 151, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,92],Leader,la:51,ci:51), start index LogEntry { index: 92, term: 3, command: [160, 6, 145, 169, 247, 244, 224, 205, 147, 239, 72] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,93],Leader,la:51,ci:51), start index LogEntry { index: 93, term: 3, command: [160, 6, 134, 183, 156, 237, 139, 194, 221, 185, 209, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,94],Leader,la:51,ci:51), start index LogEntry { index: 94, term: 3, command: [160, 6, 134, 132, 191, 231, 200, 255, 158, 130, 194, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,95],Leader,la:51,ci:51), start index LogEntry { index: 95, term: 3, command: [160, 6, 232, 251, 217, 181, 250, 152, 156, 184, 91] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,96],Leader,la:51,ci:51), start index LogEntry { index: 96, term: 3, command: [160, 6, 161, 196, 242, 185, 217, 208, 144, 202, 141, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,97],Leader,la:51,ci:51), start index LogEntry { index: 97, term: 3, command: [160, 6, 236, 167, 205, 247, 154, 246, 136, 180, 246, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,98],Leader,la:51,ci:51), start index LogEntry { index: 98, term: 3, command: [160, 6, 182, 134, 254, 187, 241, 212, 158, 182, 147, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,99],Leader,la:51,ci:51), start index LogEntry { index: 99, term: 3, command: [160, 6, 186, 166, 177, 159, 236, 207, 245, 232, 16] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,100],Leader,la:51,ci:51), start index LogEntry { index: 100, term: 3, command: [160, 6, 128, 194, 180, 165, 187, 208, 129, 201, 160, 1] }
+[2021-10-12T03:41:47Z INFO  raft::raft] Raft(3,term=3,l=[0,101],Leader,la:51,ci:51), start index LogEntry { index: 101, term: 3, command: [160, 6, 195, 221, 143, 191, 240, 235, 151, 156, 159, 1] }
+[2021-10-12T03:41:48Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:41:48Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:41:48Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:41:48Z DEBUG raft::raft::config] disconnect(3)
+[2021-10-12T03:41:48Z DEBUG raft::raft::config] disconnect(4)
+[2021-10-12T03:41:48Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:41:48Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:41:48Z DEBUG raft::raft::config] connect(4)
+[2021-10-12T03:41:48Z INFO  raft::raft] Raft(1,term=1,l=[0,52],Leader,la:1,ci:1), start index LogEntry { index: 52, term: 1, command: [160, 6, 157, 193, 228, 224, 222, 178, 205, 153, 231, 1] }
+[2021-10-12T03:41:50Z DEBUG raft::raft::config] start cmd Entry { x: 16659718364601065629 } failed: NotLeader
+[2021-10-12T03:41:50Z INFO  raft::raft] Raft(4,term=32,l=[0,52],Leader,la:51,ci:51), start index LogEntry { index: 52, term: 32, command: [160, 6, 157, 193, 228, 224, 222, 178, 205, 153, 231, 1] }
+[2021-10-12T03:41:50Z INFO  raft::raft] Raft(4,term=32,l=[0,52],Leader,la:51,ci:52) commit to index 52
+[2021-10-12T03:41:50Z DEBUG raft::raft::config] start cmd Entry { x: 2603006217374391515 } failed: NotLeader
+[2021-10-12T03:41:50Z DEBUG raft::raft::config] start cmd Entry { x: 2603006217374391515 } failed: NotLeader
+[2021-10-12T03:41:50Z INFO  raft::raft] Raft(4,term=32,l=[0,53],Leader,la:52,ci:52), start index LogEntry { index: 53, term: 32, command: [160, 6, 219, 185, 239, 181, 208, 139, 239, 143, 36] }
+[2021-10-12T03:41:50Z INFO  raft::raft] Raft(4,term=32,l=[0,53],Leader,la:52,ci:53) commit to index 53
+[2021-10-12T03:41:50Z DEBUG raft::raft::config] start cmd Entry { x: 15559432742887183733 } failed: NotLeader
+[2021-10-12T03:41:50Z DEBUG raft::raft::config] start cmd Entry { x: 15559432742887183733 } failed: NotLeader
+[2021-10-12T03:41:50Z INFO  raft::raft] Raft(4,term=32,l=[0,54],Leader,la:53,ci:53), start index LogEntry { index: 54, term: 32, command: [160, 6, 245, 170, 253, 210, 198, 180, 141, 247, 215, 1] }
+[2021-10-12T03:41:50Z INFO  raft::raft] Raft(4,term=32,l=[0,54],Leader,la:53,ci:54) commit to index 54
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 14981011488915436016 } failed: NotLeader
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 14981011488915436016 } failed: NotLeader
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,55],Leader,la:54,ci:54), start index LogEntry { index: 55, term: 32, command: [160, 6, 240, 227, 230, 230, 184, 210, 207, 243, 207, 1] }
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,55],Leader,la:54,ci:55) commit to index 55
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 1899708203360890218 } failed: NotLeader
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 1899708203360890218 } failed: NotLeader
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,56],Leader,la:55,ci:55), start index LogEntry { index: 56, term: 32, command: [160, 6, 234, 218, 226, 241, 187, 209, 199, 174, 26] }
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,56],Leader,la:55,ci:56) commit to index 56
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 16636154405859863419 } failed: NotLeader
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 16636154405859863419 } failed: NotLeader
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,57],Leader,la:56,ci:56), start index LogEntry { index: 57, term: 32, command: [160, 6, 251, 214, 206, 238, 163, 201, 223, 239, 230, 1] }
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,57],Leader,la:56,ci:57) commit to index 57
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 3886282469042113123 } failed: NotLeader
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 3886282469042113123 } failed: NotLeader
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,58],Leader,la:57,ci:57), start index LogEntry { index: 58, term: 32, command: [160, 6, 227, 148, 213, 128, 139, 170, 182, 247, 53] }
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,58],Leader,la:57,ci:58) commit to index 58
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 7380395962697850618 } failed: NotLeader
+[2021-10-12T03:41:51Z DEBUG raft::raft::config] start cmd Entry { x: 7380395962697850618 } failed: NotLeader
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,59],Leader,la:58,ci:58), start index LogEntry { index: 59, term: 32, command: [160, 6, 250, 189, 212, 210, 230, 224, 155, 182, 102] }
+[2021-10-12T03:41:51Z INFO  raft::raft] Raft(4,term=32,l=[0,59],Leader,la:58,ci:59) commit to index 59
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 978076414079629959 } failed: NotLeader
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 978076414079629959 } failed: NotLeader
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,60],Leader,la:59,ci:59), start index LogEntry { index: 60, term: 32, command: [160, 6, 135, 245, 157, 195, 144, 234, 180, 201, 13] }
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,60],Leader,la:59,ci:60) commit to index 60
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 1264528800802684915 } failed: NotLeader
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 1264528800802684915 } failed: NotLeader
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,61],Leader,la:60,ci:60), start index LogEntry { index: 61, term: 32, command: [160, 6, 243, 255, 224, 224, 233, 199, 160, 198, 17] }
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,61],Leader,la:60,ci:61) commit to index 61
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 2953369728615575730 } failed: NotLeader
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 2953369728615575730 } failed: NotLeader
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,62],Leader,la:61,ci:61), start index LogEntry { index: 62, term: 32, command: [160, 6, 178, 225, 151, 228, 237, 195, 158, 254, 40] }
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,62],Leader,la:61,ci:62) commit to index 62
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 13833894338727728424 } failed: NotLeader
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 13833894338727728424 } failed: NotLeader
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,63],Leader,la:62,ci:62), start index LogEntry { index: 63, term: 32, command: [160, 6, 168, 170, 157, 129, 178, 179, 247, 253, 191, 1] }
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,63],Leader,la:62,ci:63) commit to index 63
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 17193400391297518133 } failed: NotLeader
+[2021-10-12T03:41:52Z DEBUG raft::raft::config] start cmd Entry { x: 17193400391297518133 } failed: NotLeader
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,64],Leader,la:63,ci:63), start index LogEntry { index: 64, term: 32, command: [160, 6, 181, 148, 231, 162, 251, 209, 206, 205, 238, 1] }
+[2021-10-12T03:41:52Z INFO  raft::raft] Raft(4,term=32,l=[0,64],Leader,la:63,ci:64) commit to index 64
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 17168992995498967779 } failed: NotLeader
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 17168992995498967779 } failed: NotLeader
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,65],Leader,la:64,ci:64), start index LogEntry { index: 65, term: 32, command: [160, 6, 227, 133, 139, 191, 160, 133, 161, 162, 238, 1] }
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,65],Leader,la:64,ci:65) commit to index 65
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 469653859043923517 } failed: NotLeader
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 469653859043923517 } failed: NotLeader
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,66],Leader,la:65,ci:65), start index LogEntry { index: 66, term: 32, command: [160, 6, 189, 172, 209, 221, 164, 246, 162, 194, 6] }
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,66],Leader,la:65,ci:66) commit to index 66
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 4995963706999158244 } failed: NotLeader
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 4995963706999158244 } failed: NotLeader
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,67],Leader,la:66,ci:66), start index LogEntry { index: 67, term: 32, command: [160, 6, 228, 235, 182, 147, 217, 208, 206, 170, 69] }
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,67],Leader,la:66,ci:67) commit to index 67
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 10696153475136989551 } failed: NotLeader
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 10696153475136989551 } failed: NotLeader
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,68],Leader,la:67,ci:67), start index LogEntry { index: 68, term: 32, command: [160, 6, 239, 210, 230, 228, 163, 221, 151, 184, 148, 1] }
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,68],Leader,la:67,ci:68) commit to index 68
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 11712970027683007121 } failed: NotLeader
+[2021-10-12T03:41:53Z DEBUG raft::raft::config] start cmd Entry { x: 11712970027683007121 } failed: NotLeader
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,69],Leader,la:68,ci:68), start index LogEntry { index: 69, term: 32, command: [160, 6, 145, 149, 223, 166, 234, 133, 181, 198, 162, 1] }
+[2021-10-12T03:41:53Z INFO  raft::raft] Raft(4,term=32,l=[0,69],Leader,la:68,ci:69) commit to index 69
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 1116518031668817515 } failed: NotLeader
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 1116518031668817515 } failed: NotLeader
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,70],Leader,la:69,ci:69), start index LogEntry { index: 70, term: 32, command: [160, 6, 235, 220, 192, 183, 191, 231, 170, 191, 15] }
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,70],Leader,la:69,ci:70) commit to index 70
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 13674711713228344454 } failed: NotLeader
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 13674711713228344454 } failed: NotLeader
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,71],Leader,la:70,ci:70), start index LogEntry { index: 71, term: 32, command: [160, 6, 134, 153, 229, 198, 159, 187, 149, 227, 189, 1] }
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,71],Leader,la:70,ci:71) commit to index 71
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 135324816934946618 } failed: NotLeader
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 135324816934946618 } failed: NotLeader
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,72],Leader,la:71,ci:71), start index LogEntry { index: 72, term: 32, command: [160, 6, 186, 142, 207, 213, 195, 166, 177, 240, 1] }
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,72],Leader,la:71,ci:72) commit to index 72
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 2178906600055195330 } failed: NotLeader
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 2178906600055195330 } failed: NotLeader
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,73],Leader,la:72,ci:72), start index LogEntry { index: 73, term: 32, command: [160, 6, 194, 141, 173, 184, 162, 128, 194, 158, 30] }
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,73],Leader,la:72,ci:73) commit to index 73
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 2223616771593469193 } failed: NotLeader
+[2021-10-12T03:41:54Z DEBUG raft::raft::config] start cmd Entry { x: 2223616771593469193 } failed: NotLeader
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,74],Leader,la:73,ci:73), start index LogEntry { index: 74, term: 32, command: [160, 6, 137, 250, 183, 219, 194, 245, 247, 237, 30] }
+[2021-10-12T03:41:54Z INFO  raft::raft] Raft(4,term=32,l=[0,74],Leader,la:73,ci:74) commit to index 74
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 9951350342756155398 } failed: NotLeader
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 9951350342756155398 } failed: NotLeader
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,75],Leader,la:74,ci:74), start index LogEntry { index: 75, term: 32, command: [160, 6, 134, 128, 197, 187, 152, 141, 147, 141, 138, 1] }
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,75],Leader,la:74,ci:75) commit to index 75
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 14495583102622737687 } failed: NotLeader
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 14495583102622737687 } failed: NotLeader
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,76],Leader,la:75,ci:75), start index LogEntry { index: 76, term: 32, command: [160, 6, 151, 202, 238, 223, 254, 128, 170, 149, 201, 1] }
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,76],Leader,la:75,ci:76) commit to index 76
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 17796779856821340075 } failed: NotLeader
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 17796779856821340075 } failed: NotLeader
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,77],Leader,la:76,ci:76), start index LogEntry { index: 77, term: 32, command: [160, 6, 171, 143, 167, 189, 208, 159, 183, 253, 246, 1] }
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,77],Leader,la:76,ci:77) commit to index 77
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 18239460141909373308 } failed: NotLeader
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 18239460141909373308 } failed: NotLeader
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,78],Leader,la:77,ci:77), start index LogEntry { index: 78, term: 32, command: [160, 6, 252, 226, 157, 235, 203, 139, 229, 143, 253, 1] }
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,78],Leader,la:77,ci:78) commit to index 78
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 5697734701971082543 } failed: NotLeader
+[2021-10-12T03:41:55Z DEBUG raft::raft::config] start cmd Entry { x: 5697734701971082543 } failed: NotLeader
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,79],Leader,la:78,ci:78), start index LogEntry { index: 79, term: 32, command: [160, 6, 175, 154, 156, 187, 224, 240, 154, 137, 79] }
+[2021-10-12T03:41:55Z INFO  raft::raft] Raft(4,term=32,l=[0,79],Leader,la:78,ci:79) commit to index 79
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 10398480376147343779 } failed: NotLeader
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 10398480376147343779 } failed: NotLeader
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,80],Leader,la:79,ci:79), start index LogEntry { index: 80, term: 32, command: [160, 6, 163, 243, 135, 129, 240, 217, 180, 167, 144, 1] }
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,80],Leader,la:79,ci:80) commit to index 80
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 8364695127349945571 } failed: NotLeader
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 8364695127349945571 } failed: NotLeader
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,81],Leader,la:80,ci:80), start index LogEntry { index: 81, term: 32, command: [160, 6, 227, 201, 137, 193, 231, 188, 215, 138, 116] }
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,81],Leader,la:80,ci:81) commit to index 81
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 9006965599305544862 } failed: NotLeader
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 9006965599305544862 } failed: NotLeader
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,82],Leader,la:81,ci:81), start index LogEntry { index: 82, term: 32, command: [160, 6, 158, 233, 148, 214, 221, 239, 202, 255, 124] }
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,82],Leader,la:81,ci:82) commit to index 82
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 3646513611011078508 } failed: NotLeader
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 3646513611011078508 } failed: NotLeader
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,83],Leader,la:82,ci:82), start index LogEntry { index: 83, term: 32, command: [160, 6, 236, 242, 196, 167, 242, 153, 193, 205, 50] }
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,83],Leader,la:82,ci:83) commit to index 83
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 10194108041215253665 } failed: NotLeader
+[2021-10-12T03:41:56Z DEBUG raft::raft::config] start cmd Entry { x: 10194108041215253665 } failed: NotLeader
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,84],Leader,la:83,ci:83), start index LogEntry { index: 84, term: 32, command: [160, 6, 161, 185, 218, 180, 139, 232, 175, 188, 141, 1] }
+[2021-10-12T03:41:56Z INFO  raft::raft] Raft(4,term=32,l=[0,84],Leader,la:83,ci:84) commit to index 84
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 5217110277089663725 } failed: NotLeader
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 5217110277089663725 } failed: NotLeader
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,85],Leader,la:84,ci:84), start index LogEntry { index: 85, term: 32, command: [160, 6, 237, 181, 224, 159, 253, 196, 185, 179, 72] }
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,85],Leader,la:84,ci:85) commit to index 85
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 11909459592799635111 } failed: NotLeader
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 11909459592799635111 } failed: NotLeader
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,86],Leader,la:85,ci:85), start index LogEntry { index: 86, term: 32, command: [160, 6, 167, 141, 195, 253, 232, 204, 185, 163, 165, 1] }
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,86],Leader,la:85,ci:86) commit to index 86
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 12434493828833408643 } failed: NotLeader
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 12434493828833408643 } failed: NotLeader
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,87],Leader,la:86,ci:86), start index LogEntry { index: 87, term: 32, command: [160, 6, 131, 237, 155, 235, 154, 200, 140, 200, 172, 1] }
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,87],Leader,la:86,ci:87) commit to index 87
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 17316713372705925906 } failed: NotLeader
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 17316713372705925906 } failed: NotLeader
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,88],Leader,la:87,ci:87), start index LogEntry { index: 88, term: 32, command: [160, 6, 146, 214, 146, 203, 136, 226, 212, 168, 240, 1] }
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,88],Leader,la:87,ci:88) commit to index 88
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 8517152310700271899 } failed: NotLeader
+[2021-10-12T03:41:57Z DEBUG raft::raft::config] start cmd Entry { x: 8517152310700271899 } failed: NotLeader
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,89],Leader,la:88,ci:88), start index LogEntry { index: 89, term: 32, command: [160, 6, 155, 210, 191, 201, 233, 156, 192, 153, 118] }
+[2021-10-12T03:41:57Z INFO  raft::raft] Raft(4,term=32,l=[0,89],Leader,la:88,ci:89) commit to index 89
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 4297027776534898006 } failed: NotLeader
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 4297027776534898006 } failed: NotLeader
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,90],Leader,la:89,ci:89), start index LogEntry { index: 90, term: 32, command: [160, 6, 214, 202, 229, 146, 240, 255, 134, 209, 59] }
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,90],Leader,la:89,ci:90) commit to index 90
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 16988211864414968820 } failed: NotLeader
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 16988211864414968820 } failed: NotLeader
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,91],Leader,la:90,ci:90), start index LogEntry { index: 91, term: 32, command: [160, 6, 244, 183, 159, 220, 238, 149, 144, 225, 235, 1] }
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,91],Leader,la:90,ci:91) commit to index 91
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 3961551946002978223 } failed: NotLeader
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 3961551946002978223 } failed: NotLeader
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,92],Leader,la:91,ci:91), start index LogEntry { index: 92, term: 32, command: [160, 6, 175, 171, 143, 166, 151, 208, 144, 253, 54] }
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,92],Leader,la:91,ci:92) commit to index 92
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 2432283577220540339 } failed: NotLeader
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 2432283577220540339 } failed: NotLeader
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,93],Leader,la:92,ci:92), start index LogEntry { index: 93, term: 32, command: [160, 6, 179, 207, 252, 169, 237, 160, 205, 224, 33] }
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,93],Leader,la:92,ci:93) commit to index 93
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 11311127413052107518 } failed: NotLeader
+[2021-10-12T03:41:58Z DEBUG raft::raft::config] start cmd Entry { x: 11311127413052107518 } failed: NotLeader
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,94],Leader,la:93,ci:93), start index LogEntry { index: 94, term: 32, command: [160, 6, 254, 213, 157, 193, 192, 206, 204, 252, 156, 1] }
+[2021-10-12T03:41:58Z INFO  raft::raft] Raft(4,term=32,l=[0,94],Leader,la:93,ci:94) commit to index 94
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 9732906895032593865 } failed: NotLeader
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 9732906895032593865 } failed: NotLeader
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,95],Leader,la:94,ci:94), start index LogEntry { index: 95, term: 32, command: [160, 6, 201, 219, 248, 242, 143, 232, 142, 137, 135, 1] }
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,95],Leader,la:94,ci:95) commit to index 95
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 3725456714596125249 } failed: NotLeader
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 3725456714596125249 } failed: NotLeader
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,96],Leader,la:95,ci:95), start index LogEntry { index: 96, term: 32, command: [160, 6, 193, 148, 226, 156, 204, 228, 222, 217, 51] }
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,96],Leader,la:95,ci:96) commit to index 96
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 4630093925746828740 } failed: NotLeader
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 4630093925746828740 } failed: NotLeader
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,97],Leader,la:96,ci:96), start index LogEntry { index: 97, term: 32, command: [160, 6, 196, 203, 213, 198, 206, 188, 217, 160, 64] }
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,97],Leader,la:96,ci:97) commit to index 97
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 7940378289049027368 } failed: NotLeader
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 7940378289049027368 } failed: NotLeader
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,98],Leader,la:97,ci:97), start index LogEntry { index: 98, term: 32, command: [160, 6, 168, 134, 247, 167, 190, 255, 248, 152, 110] }
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,98],Leader,la:97,ci:98) commit to index 98
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 9486871139836705765 } failed: NotLeader
+[2021-10-12T03:41:59Z DEBUG raft::raft::config] start cmd Entry { x: 9486871139836705765 } failed: NotLeader
+[2021-10-12T03:41:59Z INFO  raft::raft] Raft(4,term=32,l=[0,99],Leader,la:98,ci:98), start index LogEntry { index: 99, term: 32, command: [160, 6, 229, 247, 252, 254, 155, 225, 136, 212, 131, 1] }
+[2021-10-12T03:42:00Z INFO  raft::raft] Raft(4,term=32,l=[0,99],Leader,la:98,ci:99) commit to index 99
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] start cmd Entry { x: 4597031407774959746 } failed: NotLeader
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] start cmd Entry { x: 4597031407774959746 } failed: NotLeader
+[2021-10-12T03:42:00Z INFO  raft::raft] Raft(4,term=32,l=[0,100],Leader,la:99,ci:99), start index LogEntry { index: 100, term: 32, command: [160, 6, 130, 145, 246, 141, 217, 246, 251, 229, 63] }
+[2021-10-12T03:42:00Z INFO  raft::raft] Raft(4,term=32,l=[0,100],Leader,la:99,ci:100) commit to index 100
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] start cmd Entry { x: 12414331710243783611 } failed: NotLeader
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] start cmd Entry { x: 12414331710243783611 } failed: NotLeader
+[2021-10-12T03:42:00Z INFO  raft::raft] Raft(4,term=32,l=[0,101],Leader,la:100,ci:100), start index LogEntry { index: 101, term: 32, command: [160, 6, 187, 135, 203, 135, 170, 157, 164, 164, 172, 1] }
+[2021-10-12T03:42:00Z INFO  raft::raft] Raft(4,term=32,l=[0,101],Leader,la:100,ci:101) commit to index 101
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] connect(3)
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] connect(4)
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] start cmd Entry { x: 7275996596372461664 } failed: NotLeader
+[2021-10-12T03:42:00Z DEBUG raft::raft::config] start cmd Entry { x: 7275996596372461664 } failed: NotLeader
+[2021-10-12T03:42:00Z INFO  raft::raft] Raft(3,term=3,l=[0,102],Leader,la:51,ci:51), start index LogEntry { index: 102, term: 3, command: [160, 6, 224, 176, 237, 141, 172, 139, 226, 252, 100] }
+[2021-10-12T03:42:02Z INFO  raft::raft] Raft(4,term=32,l=[0,102],Leader,la:101,ci:101), start index LogEntry { index: 102, term: 32, command: [160, 6, 224, 176, 237, 141, 172, 139, 226, 252, 100] }
+[2021-10-12T03:42:02Z INFO  raft::raft] Raft(4,term=32,l=[0,102],Leader,la:101,ci:102) commit to index 102
+[2021-10-12T03:42:02Z INFO  raft::raft::config]   ... Passed --
+[2021-10-12T03:42:02Z INFO  raft::raft::config]   27.4266945s  5 2240 102
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] disconnect(3)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] disconnect(4)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] connect(3)
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] connect(4)
+[2021-10-12T03:42:02Z INFO  raft::raft::config] Test (2B): basic agreement ...
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:02Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] start cmd Entry { x: 100 } failed: NotLeader
+[2021-10-12T03:42:03Z INFO  raft::raft] Raft(1,term=1,l=[0,1],Leader,la:0,ci:0), start index LogEntry { index: 1, term: 1, command: [160, 6, 100] }
+[2021-10-12T03:42:03Z INFO  raft::raft] Raft(1,term=1,l=[0,1],Leader,la:0,ci:1) commit to index 1
+[2021-10-12T03:42:03Z INFO  raft::raft] Raft(1,term=1,l=[0,2],Leader,la:1,ci:1), start index LogEntry { index: 2, term: 1, command: [160, 6, 200, 1] }
+[2021-10-12T03:42:03Z INFO  raft::raft] Raft(1,term=1,l=[0,2],Leader,la:1,ci:2) commit to index 2
+[2021-10-12T03:42:03Z INFO  raft::raft] Raft(1,term=1,l=[0,3],Leader,la:2,ci:2), start index LogEntry { index: 3, term: 1, command: [160, 6, 172, 2] }
+[2021-10-12T03:42:03Z INFO  raft::raft] Raft(1,term=1,l=[0,3],Leader,la:2,ci:3) commit to index 3
+[2021-10-12T03:42:03Z INFO  raft::raft::config]   ... Passed --
+[2021-10-12T03:42:03Z INFO  raft::raft::config]   916.4962ms  5 28 3
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:03Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:42:03Z INFO  raft::raft::config] Test (2B): concurrent start()s ...
+[2021-10-12T03:42:04Z INFO  raft::raft] Raft(1,term=1,l=[0,1],Leader,la:0,ci:0), start index LogEntry { index: 1, term: 1, command: [160, 6, 1] }
+[2021-10-12T03:42:04Z INFO  raft::raft] Raft(1,term=1,l=[0,2],Leader,la:0,ci:0), start index LogEntry { index: 2, term: 1, command: [160, 6, 100] }
+[2021-10-12T03:42:04Z INFO  raft::raft] Raft(1,term=1,l=[0,3],Leader,la:0,ci:0), start index LogEntry { index: 3, term: 1, command: [160, 6, 102] }
+[2021-10-12T03:42:04Z INFO  raft::raft] Raft(1,term=1,l=[0,4],Leader,la:0,ci:0), start index LogEntry { index: 4, term: 1, command: [160, 6, 101] }
+[2021-10-12T03:42:04Z INFO  raft::raft] Raft(1,term=1,l=[0,5],Leader,la:0,ci:0), start index LogEntry { index: 5, term: 1, command: [160, 6, 103] }
+[2021-10-12T03:42:04Z INFO  raft::raft] Raft(1,term=1,l=[0,6],Leader,la:0,ci:0), start index LogEntry { index: 6, term: 1, command: [160, 6, 104] }
+[2021-10-12T03:42:04Z INFO  raft::raft] Raft(1,term=1,l=[0,6],Leader,la:0,ci:6) commit to index 6
+[2021-10-12T03:42:04Z INFO  raft::raft::config]   ... Passed --
+[2021-10-12T03:42:04Z INFO  raft::raft::config]   834.31ms  3 12 6
+[2021-10-12T03:42:04Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:42:04Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:42:04Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:42:04Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:04Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:04Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:42:04Z INFO  raft::raft::config] Test (2B): RPC counts aren't too high ...
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,1],Leader,la:0,ci:0), start index LogEntry { index: 1, term: 1, command: [160, 6, 1] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,2],Leader,la:0,ci:0), start index LogEntry { index: 2, term: 1, command: [160, 6, 221, 229, 163, 255, 193, 175, 133, 228, 240, 1] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,3],Leader,la:0,ci:0), start index LogEntry { index: 3, term: 1, command: [160, 6, 169, 249, 245, 229, 247, 236, 153, 144, 28] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,4],Leader,la:0,ci:0), start index LogEntry { index: 4, term: 1, command: [160, 6, 160, 186, 222, 214, 153, 231, 133, 244, 197, 1] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,5],Leader,la:0,ci:0), start index LogEntry { index: 5, term: 1, command: [160, 6, 216, 172, 193, 235, 218, 231, 163, 244, 138, 1] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,6],Leader,la:0,ci:0), start index LogEntry { index: 6, term: 1, command: [160, 6, 202, 144, 236, 182, 233, 214, 201, 196, 45] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,7],Leader,la:0,ci:0), start index LogEntry { index: 7, term: 1, command: [160, 6, 175, 197, 250, 150, 149, 233, 170, 212, 152, 1] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,8],Leader,la:0,ci:0), start index LogEntry { index: 8, term: 1, command: [160, 6, 165, 241, 145, 232, 234, 227, 202, 172, 164, 1] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,9],Leader,la:0,ci:0), start index LogEntry { index: 9, term: 1, command: [160, 6, 200, 162, 232, 196, 135, 229, 235, 224, 179, 1] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,10],Leader,la:0,ci:0), start index LogEntry { index: 10, term: 1, command: [160, 6, 253, 202, 152, 245, 131, 181, 175, 140, 108] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,11],Leader,la:0,ci:0), start index LogEntry { index: 11, term: 1, command: [160, 6, 198, 192, 138, 148, 148, 180, 180, 175, 144, 1] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,12],Leader,la:0,ci:0), start index LogEntry { index: 12, term: 1, command: [160, 6, 136, 231, 182, 167, 237, 202, 142, 136, 32] }
+[2021-10-12T03:42:05Z INFO  raft::raft] Raft(0,term=1,l=[0,12],Leader,la:0,ci:12) commit to index 12
+[2021-10-12T03:42:06Z INFO  raft::raft::config]   ... Passed --
+[2021-10-12T03:42:06Z INFO  raft::raft::config]   2.3553837s  3 42 12
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:42:06Z INFO  raft::raft::config] Test (2B): agreement despite follower disconnection ...
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:06Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:07Z INFO  raft::raft] Raft(0,term=1,l=[0,1],Leader,la:0,ci:0), start index LogEntry { index: 1, term: 1, command: [160, 6, 101] }
+[2021-10-12T03:42:07Z INFO  raft::raft] Raft(0,term=1,l=[0,1],Leader,la:0,ci:1) commit to index 1
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:42:07Z DEBUG raft::raft::config] start cmd Entry { x: 102 } failed: NotLeader
+[2021-10-12T03:42:07Z INFO  raft::raft] Raft(0,term=1,l=[0,2],Leader,la:1,ci:1), start index LogEntry { index: 2, term: 1, command: [160, 6, 102] }
+[2021-10-12T03:42:07Z INFO  raft::raft] Raft(0,term=1,l=[0,2],Leader,la:1,ci:2) commit to index 2
+[2021-10-12T03:42:08Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:08Z INFO  raft::raft] Raft(0,term=1,l=[0,3],Leader,la:2,ci:2), start index LogEntry { index: 3, term: 1, command: [160, 6, 103] }
+[2021-10-12T03:42:08Z INFO  raft::raft] Raft(0,term=1,l=[0,3],Leader,la:2,ci:3) commit to index 3
+[2021-10-12T03:42:09Z DEBUG raft::raft::config] start cmd Entry { x: 104 } failed: NotLeader
+[2021-10-12T03:42:09Z INFO  raft::raft] Raft(0,term=1,l=[0,4],Leader,la:3,ci:3), start index LogEntry { index: 4, term: 1, command: [160, 6, 104] }
+[2021-10-12T03:42:09Z INFO  raft::raft] Raft(0,term=1,l=[0,4],Leader,la:3,ci:4) commit to index 4
+[2021-10-12T03:42:09Z DEBUG raft::raft::config] start cmd Entry { x: 105 } failed: NotLeader
+[2021-10-12T03:42:09Z INFO  raft::raft] Raft(0,term=1,l=[0,5],Leader,la:4,ci:4), start index LogEntry { index: 5, term: 1, command: [160, 6, 105] }
+[2021-10-12T03:42:09Z INFO  raft::raft] Raft(0,term=1,l=[0,5],Leader,la:4,ci:5) commit to index 5
+[2021-10-12T03:42:09Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:09Z DEBUG raft::raft::config] start cmd Entry { x: 106 } failed: NotLeader
+[2021-10-12T03:42:09Z DEBUG raft::raft::config] start cmd Entry { x: 106 } failed: NotLeader
+[2021-10-12T03:42:09Z INFO  raft::raft] Raft(0,term=1,l=[0,6],Leader,la:5,ci:5), start index LogEntry { index: 6, term: 1, command: [160, 6, 106] }
+[2021-10-12T03:42:11Z DEBUG raft::raft::config] start cmd Entry { x: 106 } failed: NotLeader
+[2021-10-12T03:42:11Z DEBUG raft::raft::config] start cmd Entry { x: 106 } failed: NotLeader
+[2021-10-12T03:42:11Z INFO  raft::raft] Raft(0,term=6,l=[0,7],Leader,la:5,ci:5), start index LogEntry { index: 7, term: 6, command: [160, 6, 106] }
+[2021-10-12T03:42:11Z INFO  raft::raft] Raft(0,term=6,l=[0,7],Leader,la:5,ci:7) commit to index 7
+[2021-10-12T03:42:12Z DEBUG raft::raft::config] start cmd Entry { x: 107 } failed: NotLeader
+[2021-10-12T03:42:12Z DEBUG raft::raft::config] start cmd Entry { x: 107 } failed: NotLeader
+[2021-10-12T03:42:12Z INFO  raft::raft] Raft(0,term=6,l=[0,8],Leader,la:7,ci:7), start index LogEntry { index: 8, term: 6, command: [160, 6, 107] }
+[2021-10-12T03:42:12Z INFO  raft::raft] Raft(0,term=6,l=[0,8],Leader,la:7,ci:8) commit to index 8
+[2021-10-12T03:42:13Z INFO  raft::raft::config]   ... Passed --
+[2021-10-12T03:42:13Z INFO  raft::raft::config]   6.1876372s  3 128 8
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] disconnect(3)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] disconnect(4)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] connect(3)
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] connect(4)
+[2021-10-12T03:42:13Z INFO  raft::raft::config] Test (2B): no agreement if too many followers disconnect ...
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z DEBUG raft::raft::config] start cmd Entry { x: 10 } failed: NotLeader
+[2021-10-12T03:42:13Z INFO  raft::raft] Raft(3,term=1,l=[0,1],Leader,la:0,ci:0), start index LogEntry { index: 1, term: 1, command: [160, 6, 10] }
+[2021-10-12T03:42:13Z INFO  raft::raft] Raft(3,term=1,l=[0,1],Leader,la:0,ci:1) commit to index 1
+[2021-10-12T03:42:14Z DEBUG raft::raft::config] disconnect(4)
+[2021-10-12T03:42:14Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:42:14Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:42:14Z INFO  raft::raft] Raft(3,term=1,l=[0,2],Leader,la:1,ci:1), start index LogEntry { index: 2, term: 1, command: [160, 6, 20] }
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] connect(4)
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:16Z INFO  raft::raft] Raft(3,term=7,l=[0,3],Leader,la:1,ci:1), start index LogEntry { index: 3, term: 7, command: [160, 6, 30] }
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] start cmd Entry { x: 1000 } failed: NotLeader
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] start cmd Entry { x: 1000 } failed: NotLeader
+[2021-10-12T03:42:16Z INFO  raft::raft] Raft(3,term=7,l=[0,4],Leader,la:1,ci:1), start index LogEntry { index: 4, term: 7, command: [160, 6, 232, 7] }
+[2021-10-12T03:42:16Z INFO  raft::raft] Raft(3,term=7,l=[0,4],Leader,la:1,ci:4) commit to index 4
+[2021-10-12T03:42:16Z INFO  raft::raft::config]   ... Passed --
+[2021-10-12T03:42:16Z INFO  raft::raft::config]   3.8417308s  5 204 4
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] disconnect(1)
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] connect(1)
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:42:16Z INFO  raft::raft::config] Test (2B): rejoin of partitioned leader ...
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:16Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 101 } failed: NotLeader
+[2021-10-12T03:42:17Z INFO  raft::raft] Raft(0,term=1,l=[0,1],Leader,la:0,ci:0), start index LogEntry { index: 1, term: 1, command: [160, 6, 101] }
+[2021-10-12T03:42:17Z INFO  raft::raft] Raft(0,term=1,l=[0,1],Leader,la:0,ci:1) commit to index 1
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] disconnect(0)
+[2021-10-12T03:42:17Z INFO  raft::raft] Raft(0,term=1,l=[0,2],Leader,la:1,ci:1), start index LogEntry { index: 2, term: 1, command: [160, 6, 102] }
+[2021-10-12T03:42:17Z INFO  raft::raft] Raft(0,term=1,l=[0,3],Leader,la:1,ci:1), start index LogEntry { index: 3, term: 1, command: [160, 6, 103] }
+[2021-10-12T03:42:17Z INFO  raft::raft] Raft(0,term=1,l=[0,4],Leader,la:1,ci:1), start index LogEntry { index: 4, term: 1, command: [160, 6, 104] }
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:17Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 103 } failed: NotLeader
+[2021-10-12T03:42:18Z INFO  raft::raft] Raft(2,term=2,l=[0,2],Leader,la:1,ci:1), start index LogEntry { index: 2, term: 2, command: [160, 6, 103] }
+[2021-10-12T03:42:18Z INFO  raft::raft] Raft(2,term=2,l=[0,2],Leader,la:1,ci:2) commit to index 2
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] disconnect(2)
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] connect(0)
+[2021-10-12T03:42:18Z DEBUG raft::raft::config] start cmd Entry { x: 104 } failed: NotLeader
+[2021-10-12T03:42:18Z INFO  raft::raft] Raft(0,term=1,l=[0,5],Leader,la:1,ci:1), start index LogEntry { index: 5, term: 1, command: [160, 6, 104] }
+[2021-10-12T03:42:20Z INFO  raft::raft] Raft(1,term=5,l=[0,3],Leader,la:2,ci:2), start index LogEntry { index: 3, term: 5, command: [160, 6, 104] }
+[2021-10-12T03:42:20Z INFO  raft::raft] Raft(1,term=5,l=[0,3],Leader,la:2,ci:3) commit to index 3
+[2021-10-12T03:42:20Z DEBUG raft::raft::config] connect(2)
+[2021-10-12T03:42:20Z INFO  raft::raft] Raft(1,term=5,l=[0,4],Leader,la:3,ci:3), start index LogEntry { index: 4, term: 5, command: [160, 6, 105] }
+[2021-10-12T03:42:21Z INFO  raft::raft] Raft(1,term=5,l=[0,4],Leader,la:3,ci:4) commit to index 4
+[2021-10-12T03:42:21Z INFO  raft::raft::config]   ... Passed --
+[2021-10-12T03:42:21Z INFO  raft::raft::config]   4.2636587s  3 136 4
+   Doc-tests raft

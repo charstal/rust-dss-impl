@@ -94,51 +94,59 @@ async fn apply_command(server: Arc<Mutex<KvServer>>, stop_signal: Arc<watch::Rec
     };
     while !*stop_signal.borrow() {
         if let Some(apply_msg) = rx.next().await {
-            if !apply_msg.command_valid {
-                continue;
-            }
-            if apply_msg.command.is_empty() {
-                continue;
-            }
-
-            let command = match labcodec::decode::<Command>(&apply_msg.command) {
-                Ok(cmd) => cmd,
-                _ => continue,
-            };
-            let (value, ch) = {
-                let mut server = server.lock().unwrap();
-
-                let ch = server.result_ch.remove(&apply_msg.command_index);
-
-                let entry = server
-                    .client_seq
-                    .entry(command.identifier.clone())
-                    .or_insert(0);
-                // info!(
-                //     "[server]: current seq:{}, command from:{}, {:?}",
-                //     entry, command.identifier, command
-                // );
-                let value = match (command.op, *entry < command.seq) {
-                    (3, _) => Some(server.get(command.key)),
-                    (2, true) => {
-                        server.append(command.key, command.value);
-                        // server.client_seq.insert(command.identifier, command.seq);
-                        None
+            match apply_msg {
+                ApplyMsg::Command { data, index } => {
+                    if data.is_empty() {
+                        continue;
                     }
-                    (1, true) => {
-                        server.put(command.key, command.value);
-                        // server.client_seq.insert(command.identifier, command.seq);
-                        None
-                    }
-                    _ => None,
-                };
-                server.client_seq.insert(command.identifier, command.seq);
-                // info!("[server][store]: {:?}", server.kv_store);
 
-                (value, ch)
-            };
-            if let Some(ch) = ch {
-                ch.send((server.lock().unwrap().rf.term(), value)).unwrap();
+                    let command = match labcodec::decode::<Command>(&data) {
+                        Ok(cmd) => cmd,
+                        _ => continue,
+                    };
+                    let (value, ch) = {
+                        let mut server = server.lock().unwrap();
+
+                        let ch = server.result_ch.remove(&index);
+
+                        let entry = server
+                            .client_seq
+                            .entry(command.identifier.clone())
+                            .or_insert(0);
+                        // info!(
+                        //     "[server]: current seq:{}, command from:{}, {:?}",
+                        //     entry, command.identifier, command
+                        // );
+                        let value = match (command.op, *entry < command.seq) {
+                            (3, _) => Some(server.get(command.key)),
+                            (2, true) => {
+                                server.append(command.key, command.value);
+                                // server.client_seq.insert(command.identifier, command.seq);
+                                None
+                            }
+                            (1, true) => {
+                                server.put(command.key, command.value);
+                                // server.client_seq.insert(command.identifier, command.seq);
+                                None
+                            }
+                            _ => None,
+                        };
+                        server.client_seq.insert(command.identifier, command.seq);
+                        // info!("[server][store]: {:?}", server.kv_store);
+
+                        (value, ch)
+                    };
+                    if let Some(ch) = ch {
+                        ch.send((server.lock().unwrap().rf.term(), value)).unwrap();
+                    }
+                }
+                ApplyMsg::Snapshot {
+                    data: _,
+                    term: _,
+                    index: _,
+                } => {
+                    unimplemented!()
+                }
             }
         }
     }
