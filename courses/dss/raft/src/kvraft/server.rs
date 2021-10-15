@@ -2,7 +2,7 @@ use futures::channel::mpsc::{unbounded, UnboundedReceiver};
 use futures::executor::ThreadPool;
 use futures::task::SpawnExt;
 use futures::StreamExt;
-use std::collections::{BTreeMap, HashMap};
+use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 // use tokio::runtime::Runtime;
 use tokio::sync::{
@@ -13,6 +13,7 @@ use tokio::sync::{
 use crate::proto::kvraftpb::*;
 use crate::raft::{self, ApplyMsg};
 
+pub const SNAPSHOT_INTERVAL: u64 = 20;
 pub struct KvServer {
     pub rf: raft::Node,
     me: usize,
@@ -20,7 +21,7 @@ pub struct KvServer {
     maxraftstate: Option<usize>,
     // Your definitions here.
     // kv store
-    kv_store: BTreeMap<String, String>,
+    kv_store: HashMap<String, String>,
     // record of each clent request seq
     client_seq: HashMap<String, u64>,
     // raft channel
@@ -39,17 +40,68 @@ impl KvServer {
         // You may need initialization code here.
 
         let (tx, apply_ch) = unbounded();
+        let snapshot = persister.snapshot();
         let rf = raft::Raft::new(servers, me, persister, tx);
         let rf_node = raft::Node::new(rf);
 
-        KvServer {
+        let mut kvserver = KvServer {
             rf: rf_node,
             me,
             maxraftstate,
-            kv_store: BTreeMap::new(),
+            kv_store: HashMap::new(),
             client_seq: HashMap::new(),
             apply_ch: Some(apply_ch),
             result_ch: HashMap::new(),
+        };
+        kvserver.restore(&snapshot);
+        kvserver
+    }
+}
+
+impl KvServer {
+    fn log_compaction(&mut self, applied_index: u64) {
+        if let Some(log_size) = self.maxraftstate {
+            if !self.rf.check_log_size(log_size) && (applied_index + 1) % SNAPSHOT_INTERVAL == 0 {
+                info!("[kvserver] -----------------start snapshot---------------------");
+                let snapshot = self.gen_snapshot();
+                self.rf.snapshot(applied_index, &snapshot);
+            }
+        }
+    }
+    fn gen_snapshot(&self) -> Vec<u8> {
+        let kv = self.kv_store.clone();
+        let cs = self.client_seq.clone();
+        let snapshot = SnapShot {
+            key: kv.keys().cloned().collect(),
+            value: kv.values().cloned().collect(),
+            client_name: cs.keys().cloned().collect(),
+            seqs: cs.values().cloned().collect(),
+        };
+        let mut data = vec![];
+        labcodec::encode(&snapshot, &mut data).unwrap();
+
+        data
+    }
+    fn install_snapshot(&mut self, snapshot: &[u8], term: u64, index: u64) {
+        // info!("[kvserver][install snapshot]");
+        if snapshot.is_empty() {
+            return;
+        }
+        self.rf.cond_install_snapshot(term, index, snapshot);
+        self.restore(snapshot);
+    }
+    fn restore(&mut self, snapshot: &[u8]) {
+        if let Ok(snapshot) = labcodec::decode::<SnapShot>(snapshot) {
+            self.kv_store = snapshot
+                .key
+                .into_iter()
+                .zip(snapshot.value.into_iter())
+                .collect();
+            self.client_seq = snapshot
+                .client_name
+                .into_iter()
+                .zip(snapshot.seqs.into_iter())
+                .collect();
         }
     }
 }
@@ -99,6 +151,10 @@ async fn apply_command(server: Arc<Mutex<KvServer>>, stop_signal: Arc<watch::Rec
                     if data.is_empty() {
                         continue;
                     }
+                    // info!(
+                    //     "[kvserver][rx] apply channel command: {:?} index: {}",
+                    //     data, index
+                    // );
 
                     let command = match labcodec::decode::<Command>(&data) {
                         Ok(cmd) => cmd,
@@ -133,19 +189,23 @@ async fn apply_command(server: Arc<Mutex<KvServer>>, stop_signal: Arc<watch::Rec
                         };
                         server.client_seq.insert(command.identifier, command.seq);
                         // info!("[server][store]: {:?}", server.kv_store);
-
+                        // info!(
+                        //     "[apply_command]: {:?}, {:?}, {:?}",
+                        //     server.rf.raft.lock().unwrap(),
+                        //     cmd,
+                        //     server.kv_store.get(&cmd.key)
+                        // );
+                        server.log_compaction(index);
                         (value, ch)
                     };
+
                     if let Some(ch) = ch {
                         ch.send((server.lock().unwrap().rf.term(), value)).unwrap();
                     }
                 }
-                ApplyMsg::Snapshot {
-                    data: _,
-                    term: _,
-                    index: _,
-                } => {
-                    unimplemented!()
+                ApplyMsg::Snapshot { data, term, index } => {
+                    let mut server = server.lock().unwrap();
+                    server.install_snapshot(&data, term, index);
                 }
             }
         }
@@ -203,6 +263,7 @@ impl Node {
         // you should call `raft::Node::kill` here also to prevent resource leaking.
         // Since the test framework will call kvraft::Node::kill only.
         // self.server.kill();
+        // info!("[kvserver] -----------------shutdown server--------------");
         let rf = &self.server.lock().unwrap().rf;
         rf.kill();
         self.stop_channel.send(true).unwrap();

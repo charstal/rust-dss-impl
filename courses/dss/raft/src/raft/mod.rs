@@ -206,8 +206,6 @@ pub struct Raft {
     apply_ch: UnboundedSender<ApplyMsg>,
     // time log
     last_receive_time: time::Instant,
-    // snapshot
-    snapshot: Option<Vec<u8>>,
 }
 
 impl Raft {
@@ -247,7 +245,6 @@ impl Raft {
             logs: Log::new(),
             apply_ch,
             last_receive_time: time::Instant::now(),
-            snapshot: None,
         };
 
         // initialize from state persisted before a crash
@@ -490,6 +487,7 @@ impl Raft {
             self.next_index[self.me] = index as u64 + 1;
             self.match_index[self.me] = index as u64;
             self.persist();
+            // info!("logs {:?}", self.logs.entries);
             info!("{:?}, start index {:?}", self, log_entry);
             Ok((index as u64, term))
         } else {
@@ -592,6 +590,7 @@ impl Raft {
     }
 
     fn truncate_log(&mut self, index: u64) {
+        // info!("{:?} get: {}, logs:{:?}", self, index, self.logs.entries);
         self.logs.truncate_after_log(index);
     }
 
@@ -623,15 +622,9 @@ impl Raft {
         snapshot: &[u8],
     ) -> bool {
         // Your code here (2D).
-        if self.commit_index >= last_included_index {
-            return false;
-        }
-        self.logs
-            .set_last_entry_info(last_included_index, last_included_term);
-        self.commit_index = last_included_index;
-        self.last_applied = last_included_index;
-        self.snapshot = Some(snapshot.to_vec());
-
+        // if self.commit_index >= last_included_index {
+        //     return false;
+        // }
         if let Some(_log_entry) = self
             .logs
             .find_same_entry(last_included_term, last_included_index)
@@ -639,12 +632,20 @@ impl Raft {
             self.logs.truncate_before_log(last_included_index);
         } else {
             self.logs.log_clear();
+            self.logs.push(LogEntry {
+                term: last_included_term,
+                index: last_included_index,
+                command: vec![],
+            });
         }
-        self.logs.push(LogEntry {
-            term: last_included_term,
-            index: last_included_index,
-            command: vec![],
-        });
+
+        self.logs
+            .set_last_entry_info(last_included_index, last_included_term);
+        self.commit_index = last_included_index;
+        self.last_applied = last_included_index;
+        let state = self.persist_state();
+        self.persister
+            .save_state_and_snapshot(state, snapshot.to_vec());
         info!("{:?} after install snapshot", self);
         true
     }
@@ -659,12 +660,15 @@ impl Raft {
             info!("{:?} snapshot at index {}", self, index);
             self.logs.truncate_before_log(index);
             self.logs.set_last_entry_info(entry.index, entry.term);
-            self.snapshot = Some(snapshot.to_vec());
             let state = self.persist_state();
             self.persister
                 .save_state_and_snapshot(state, snapshot.to_vec());
             // info!("after snapshot logs: {:?}", self.logs.entries);
         }
+    }
+
+    pub fn check_log_size(&self, log_size: usize) -> bool {
+        self.persister.raft_state().len() < log_size / 10 * 8
     }
 }
 
@@ -825,14 +829,14 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
                             term: rt.current_term,
                             last_included_index: rt.logs.last_included_index,
                             last_included_term: rt.logs.last_included_term,
-                            data: rt.snapshot.clone().unwrap(),
+                            data: rt.persister.snapshot(),
                         };
                         let rx = rt.send_install_snapshot(peer, args.clone());
                         rxs_snapshot.push((peer, args.clone(), rx));
-                        info!(
-                            "[install snapshot].[tx]: leader: {}\t follower: {}\t args: {:?}\n",
-                            rt.me, peer, args
-                        );
+                        // info!(
+                        //     "[install snapshot].[tx]: leader: {}\t follower: {}\t args: {:?}\n",
+                        //     rt.me, peer, args
+                        // );
                     } else {
                         let args = rt.generate_append_entries_rpc_request(peer);
                         let rx = rt.send_append_entries(peer, args.clone());
@@ -892,10 +896,10 @@ async fn start_heartbeat(raft: Arc<Mutex<Raft>>) {
             tokio::spawn(async move {
                 if let Ok(Ok(reply)) = rx.await {
                     let mut rt = raft.lock().unwrap();
-                    info!(
-                        "[install snapshot].[rx] from:{}, leader: {}, heartbeat args: {:?}",
-                        peer, rt.me, &args
-                    );
+                    // info!(
+                    //     "[install snapshot].[rx] from:{}, leader: {}, heartbeat args: {:?}",
+                    //     peer, rt.me, &args
+                    // );
 
                     if rt.current_term < reply.term {
                         rt.convert_to_follower(reply.term);
@@ -917,13 +921,12 @@ async fn apply_log(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
     while !*stop_signal.borrow() {
         let mut logs = vec![];
         {
-            let mut rt = raft.lock().unwrap();
+            let rt = raft.lock().unwrap();
             if rt.last_applied < rt.commit_index {
                 for idx in rt.last_applied + 1..=rt.commit_index {
                     let log = rt.get_log_entry(idx).unwrap();
                     logs.push(log);
                 }
-                rt.last_applied = rt.commit_index;
             }
         }
 
@@ -934,6 +937,11 @@ async fn apply_log(raft: Arc<Mutex<Raft>>, stop_signal: watch::Receiver<bool>) {
             };
 
             let _ = apply_ch.send(am).await;
+
+            {
+                let mut rt = raft.lock().unwrap();
+                rt.last_applied = log.index;
+            }
         }
     }
 }
@@ -1069,6 +1077,10 @@ impl Node {
         // Example:
         // self.raft.snapshot(index, snapshot)
         self.raft.lock().unwrap().snapshot(index, snapshot);
+    }
+
+    pub fn check_log_size(&self, log_size: usize) -> bool {
+        self.raft.lock().unwrap().check_log_size(log_size)
     }
 }
 

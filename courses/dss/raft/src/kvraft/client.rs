@@ -74,10 +74,10 @@ impl Clerk {
                 tx.send(reply).unwrap_or(());
             });
             let reply = rx.recv_timeout(Duration::from_millis(1000));
-            info!(
-                "[client][put_append]: request:{:?}, leader:{}, response:{:?}",
-                request, leader_id, reply
-            );
+            // info!(
+            //     "[client][get]: client:{:?}, request:{:?}, leader:{}, response:{:?}",
+            //     self.name, request, leader_id, reply
+            // );
             match reply {
                 Ok(Ok(reply)) => {
                     // info!(
@@ -133,10 +133,10 @@ impl Clerk {
                 tx.send(reply).unwrap_or(());
             });
             let reply = rx.recv_timeout(Duration::from_millis(500));
-            info!(
-                "[client][put_append]: request:{:?}, leader:{}, response:{:?}",
-                request, leader_id, reply
-            );
+            // info!(
+            //     "[client][put_append]: request:{:?}, leader:{}, response:{:?}",
+            //     request, leader_id, reply
+            // );
             match reply {
                 Ok(Ok(reply)) => {
                     // info!(

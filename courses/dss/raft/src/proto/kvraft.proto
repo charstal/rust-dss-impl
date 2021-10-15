@@ -46,3 +46,10 @@ message GetReply {
     string err = 2;
     string value = 3;
 }
+
+message SnapShot {
+    repeated string key = 1;
+    repeated string value = 2;
+    repeated string client_name = 3;
+    repeated uint64 seqs = 4;
+}
